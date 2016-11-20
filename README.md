@@ -5,10 +5,8 @@
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements NAB Transact support for Omnipay.
 
-[![StyleCI](https://styleci.io/repos/73980655/shield?branch=master)](https://styleci.io/repos/73980655)
+[![StyleCI](https://styleci.io/repos/74269379/shield?branch=master)](https://styleci.io/repos/74269379)
 [![Build Status](https://travis-ci.org/sudiptpa/nabtransact.svg?branch=master)](https://travis-ci.org/sudiptpa/nabtransact)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sudiptpa/nabtransact/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sudiptpa/nabtransact/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/sudiptpa/nabtransact/version.png)](https://packagist.org/packages/sudiptpa/nabtransact)
 
 ## Installation
 
@@ -32,7 +30,7 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* NAB Transact SecureXML API*
+* NAB Transact SecureXML API
 
 ```php
     use Omnipay\Omnipay;
@@ -43,17 +41,17 @@ The following gateways are provided by this package:
     $gateway->setTransactionPassword('abc123');
     $gateway->setTestMode(true);
  
-    $card = new CreditCard(
-        [
+    $card = new CreditCard([
+            'firstName' => 'Sujip',
+            'lastName' => 'Thapa',            
             'number'      => '4444333322221111',
-            'expiryMonth' => '6',
-            'expiryYear'  => '2020',
+            'expiryMonth' => '06',
+            'expiryYear'  => '2030',
             'cvv'         => '123',
         ]
     );
  
-    $transaction = $gateway->purchase(
-        [
+    $transaction = $gateway->purchase([
             'amount'        => '10.00',
             'currency'      => 'AUD',
             'transactionId' => 'XYZ100',
