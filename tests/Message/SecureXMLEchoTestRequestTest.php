@@ -2,8 +2,6 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\NABTransact\Message\SecureXMLEchoTestRequest;
-use Omnipay\NABTransact\Message\SecureXMLResponse;
 use Omnipay\Tests\TestCase;
 
 class SecureXMLEchoTestRequestTest extends TestCase
@@ -14,9 +12,9 @@ class SecureXMLEchoTestRequestTest extends TestCase
 
         $this->request->initialize(
             array(
-                'merchantId' => 'XYZ0010',
+                'merchantId'          => 'XYZ0010',
                 'transactionPassword' => 'abcd1234',
-                'testMode' => true,
+                'testMode'            => true,
             )
         );
     }
@@ -25,10 +23,10 @@ class SecureXMLEchoTestRequestTest extends TestCase
     {
         $data = array();
 
-        $data['RequestType'] = "Echo";
-        $data['statusDescription'] = "Normal";
-        $data['statusCode'] = "000";
-        $data['apiVersion'] = "xml-4.2";
+        $data['RequestType'] = 'Echo';
+        $data['statusDescription'] = 'Normal';
+        $data['statusCode'] = '000';
+        $data['apiVersion'] = 'xml-4.2';
 
         $response = new SecureXMLResponse($this->getMockRequest(), $data);
 
