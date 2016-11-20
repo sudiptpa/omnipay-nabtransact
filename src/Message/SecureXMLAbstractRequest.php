@@ -22,6 +22,9 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
      */
     protected $requestType = 'Payment';
 
+    /**
+     * @var mixed
+     */
     protected $txnType;
 
     /**
@@ -61,7 +64,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     {
         $messageId = $this->getParameter('messageId');
 
-        if (!$this->getParameter('messageId'))) {
+        if (!$this->getParameter('messageId')) {
             $this->setMessageId($this->generateMessageId());
         }
 
@@ -70,6 +73,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)
@@ -132,8 +136,9 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     }
 
     /**
-     * @return \SimpleXMLElement NABTransactMessage with transaction and card
-     * details.
+     * NABTransactMessage with transaction and card details.
+     *
+     * @return \SimpleXMLElement
      */
     protected function getBasePaymentXMLWithCard()
     {
@@ -145,7 +150,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         $card->addChild('cardNumber', $this->getCard()->getNumber());
         $card->addChild('cvv', $this->getCard()->getCvv());
         $card->addChild('expiryDate', $this->getCard()->getExpiryDate('m/y'));
-        $card->addChild('cardHolderName', $this->getCardHolderName())
+        $card->addChild('cardHolderName', $this->getCardHolderName());
         $card->addChild('recurringflag', 'no');
 
         return $xml;
