@@ -17,9 +17,9 @@ class SecureXMLGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'merchantId'          => '',
+            'merchantId' => '',
             'transactionPassword' => '',
-            'testMode'            => false,
+            'testMode' => false,
         );
     }
 
