@@ -6,7 +6,6 @@ use Omnipay\Common\AbstractGateway;
 
 /**
  * NABTransact Secure XML Gateway.
- *
  */
 class SecureXMLGateway extends AbstractGateway
 {
@@ -18,9 +17,9 @@ class SecureXMLGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'merchantId' => '',
+            'merchantId'          => '',
             'transactionPassword' => '',
-            'testMode' => false,
+            'testMode'            => false,
         );
     }
 
@@ -34,6 +33,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setMerchantId($value)
@@ -51,6 +51,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setTransactionPassword($value)
@@ -60,6 +61,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function authorize(array $parameters = array())
@@ -69,6 +71,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function capture(array $parameters = array())
@@ -78,6 +81,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function purchase(array $parameters = array())
@@ -87,6 +91,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function refund(array $parameters = array())
@@ -96,6 +101,7 @@ class SecureXMLGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function echoTest(array $parameters = array())
