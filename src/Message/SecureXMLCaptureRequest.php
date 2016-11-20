@@ -47,7 +47,6 @@ class SecureXMLCaptureRequest extends SecureXMLAbstractRequest
 
     /**
      * @return string The preauthId from the authorize request that this capture matches.
-     *
      */
     public function getPreauthId()
     {

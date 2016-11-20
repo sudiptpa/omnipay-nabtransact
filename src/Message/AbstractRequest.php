@@ -27,6 +27,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setMerchantId($value)
@@ -44,6 +45,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setTransactionPassword($value)
