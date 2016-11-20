@@ -61,7 +61,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     {
         $messageId = $this->getParameter('messageId');
 
-        if (!$this->getParameter('messageId'))) {
+        if (!$this->getParameter('messageId')) {
             $this->setMessageId($this->generateMessageId());
         }
 
