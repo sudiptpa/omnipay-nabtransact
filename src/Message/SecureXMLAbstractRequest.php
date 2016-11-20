@@ -73,6 +73,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)
