@@ -37,8 +37,8 @@ The following gateways are provided by this package:
     use Omnipay\Common\CreditCard;
 
     $gateway = Omnipay::create('NABTransact_SecureXML');
-    $gateway->setMerchantId('ABC0001');
-    $gateway->setTransactionPassword('abc123');
+    $gateway->setMerchantId('XYZ0010');
+    $gateway->setTransactionPassword('abcd1234');
     $gateway->setTestMode(true);
  
     $card = new CreditCard([
