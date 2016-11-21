@@ -6,7 +6,7 @@
 processing library for PHP 5.3+. This package implements NAB Transact support for Omnipay.
 
 [![StyleCI](https://styleci.io/repos/74269379/shield?branch=master)](https://styleci.io/repos/74269379)
-[![Build Status](https://travis-ci.org/sudiptpa/nabtransact.svg?branch=master)](https://travis-ci.org/sudiptpa/nabtransact)
+[![Build Status](https://travis-ci.org/sudiptpa/omnipay-nabtransact.svg?branch=master)](https://travis-ci.org/sudiptpa/omnipay-nabtransact)
 [![Latest Stable Version](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/v/stable)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
 [![Total Downloads](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/downloads)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
 [![License](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/license)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
