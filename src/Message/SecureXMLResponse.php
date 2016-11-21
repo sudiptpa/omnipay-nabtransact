@@ -43,6 +43,16 @@ class SecureXMLResponse extends AbstractResponse
     }
 
     /**
+     * Gateway RequestType if available.
+     *
+     * @return string
+     */
+    public function getRequestType()
+    {
+        return (string) $this->data->RequestType;
+    }
+
+    /**
      * Gateway approved string if available.
      *
      * @return string
@@ -91,7 +101,7 @@ class SecureXMLResponse extends AbstractResponse
     public function getTransactionReference()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->txnID
+        ? (string) $this->data->Payment->TxnList->Txn->purchaseOrderNo
         : null;
     }
 
@@ -134,10 +144,10 @@ class SecureXMLResponse extends AbstractResponse
      *
      * @return mixed
      */
-    public function getTransactionCurrencySource()
+    public function getTransactionSource()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->currency
+        ? (string) $this->data->Payment->TxnList->Txn->txnSource
         : null;
     }
 

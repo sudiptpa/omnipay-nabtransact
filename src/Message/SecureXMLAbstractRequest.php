@@ -56,9 +56,9 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     }
 
     /**
-     * Get the messageID for the request.
+     * Get the messageID or generated one based on timestamp.
      *
-     * @return string User-supplied messageID or generated one based on timestamp.
+     * @return string
      */
     public function getMessageId()
     {
@@ -150,7 +150,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         $card->addChild('cardNumber', $this->getCard()->getNumber());
         $card->addChild('cvv', $this->getCard()->getCvv());
         $card->addChild('expiryDate', $this->getCard()->getExpiryDate('m/y'));
-        $card->addChild('cardHolderName', $this->getCardHolderName());
+        $card->addChild('cardHolderName', $this->getCard()->getName());
         $card->addChild('recurringflag', 'no');
 
         return $xml;
