@@ -12,16 +12,16 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
         $this->request->initialize(
             array(
-                'merchantId'          => 'XYZ0010',
+                'merchantId' => 'XYZ0010',
                 'transactionPassword' => 'abcd1234',
-                'testMode'            => true,
-                'amount'              => '12.00',
-                'transactionId'       => '1234',
-                'card'                => array(
-                    'number'         => '4444333322221111',
-                    'expiryMonth'    => '10',
-                    'expiryYear'     => '2030',
-                    'cvv'            => '123',
+                'testMode' => true,
+                'amount' => '12.00',
+                'transactionId' => '1234',
+                'card' => array(
+                    'number' => '4444333322221111',
+                    'expiryMonth' => '10',
+                    'expiryYear' => '2030',
+                    'cvv' => '123',
                     'cardHolderName' => 'Sujip Thapa',
                 ),
             )
@@ -66,6 +66,62 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->assertSame('Approved', $response->getMessage());
         $this->assertSame('00', $response->getCode());
         $this->assertSame('10', (string) $data->Payment->TxnList->Txn->txnType);
+    }
+
+    public function testSendFailure()
+    {
+        $this->setMockHttpResponse('SecureXMLAuthorizeRequestFail.txt');
+        $response = $this->request->send();
+
+        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertSame('510', $response->getCode());
+        $this->assertSame('Unable To Connect To Server', $response->getMessage());
+        $this->assertSame('20161122083125000+345', $response->getMessageTimestamp());
+    }
+
+    public function testInsufficientFundsFailure()
+    {
+        $this->setMockHttpResponse('SecureXMLAuthorizeRequestInsufficientFundsFail.txt');
+        $response = $this->request->send();
+
+        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('51', $response->getCode());
+        $this->assertSame('Insufficient Funds', $response->getMessage());
+    }
+
+    public function testInvalidMerchantFailure()
+    {
+        $this->setMockHttpResponse('SecureXMLAuthorizeRequestInvalidMerchantFail.txt');
+        $response = $this->request->send();
+
+        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('504', $response->getCode());
+        $this->assertSame('Invalid merchant ABC0030', $response->getMessage());
+    }
+
+    public function testInvalidMerchantIDFailure()
+    {
+        $this->setMockHttpResponse('SecureXMLAuthorizeRequestInvalidMerchantIDFail.txt');
+        $response = $this->request->send();
+
+        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertNull($response->getTransactionReference());
+        $this->assertSame('504', $response->getCode());
+        $this->assertSame('Invalid merchant ID', $response->getMessage());
     }
 
     public function testSetMessageId()

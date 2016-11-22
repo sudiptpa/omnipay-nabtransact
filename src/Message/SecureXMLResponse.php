@@ -85,14 +85,25 @@ class SecureXMLResponse extends AbstractResponse
     }
 
     /**
-     * @return string Gateway failure message or transaction message if
-     *                available.
+     * Gateway failure message or transaction message if available.
+     *
+     * @return string
      */
     public function getMessage()
     {
         return $this->hasTransaction()
         ? (string) $this->data->Payment->TxnList->Txn->responseText
         : (string) $this->data->Status->statusDescription;
+    }
+
+    /**
+     * Gateway message timestamp if available.
+     *
+     * @return string
+     */
+    public function getMessageTimestamp()
+    {
+        return (string) $this->data->MessageInfo->messageTimestamp;
     }
 
     /**
