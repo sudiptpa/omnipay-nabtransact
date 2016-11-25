@@ -12,15 +12,15 @@ class DirectPostPurchaseRequestTest extends TestCase
 
         $this->request->initialize(
             array(
-                'merchantId'          => 'foo',
-                'transactionPassword' => 'bar',
-                'amount'              => '12.00',
-                'returnUrl'           => 'https://www.example.com/return',
-                'card'                => array(
-                    'number'      => '4444333322221111',
-                    'expiryMonth' => '6',
-                    'expiryYear'  => '2020',
-                    'cvv'         => '123',
+                'merchantId' => 'XYZ0010',
+                'transactionPassword' => 'abcd1234',
+                'amount' => '12.00',
+                'returnUrl' => 'https://www.example.com/return',
+                'card' => array(
+                    'number' => '4444333322221111',
+                    'expiryMonth' => '06',
+                    'expiryYear' => '2020',
+                    'cvv' => '123',
                 ),
             )
         );
@@ -29,9 +29,10 @@ class DirectPostPurchaseRequestTest extends TestCase
     public function testFingerprint()
     {
         $data = $this->request->getData();
-        $data['EPS_TIMESTAMP'] = '20130416123332';
+        $data['EPS_TIMESTAMP'] = '20161125123332';
 
-        $this->assertSame('652856e75b04c5916a41082e04c9390961497f65', $this->request->generateFingerprint($data));
+        $this->assertSame('cbb64e71e360dba6337f22a00bdf0d0b89a7a568',
+            $this->request->generateFingerprint($data));
     }
 
     public function testSend()
