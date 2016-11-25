@@ -5,7 +5,7 @@ namespace Omnipay\NABTransact\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
- * NABTransact Direct Post Complete Purchase Request
+ * NABTransact Direct Post Complete Purchase Request.
  */
 class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
 {
@@ -45,6 +45,7 @@ class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)

@@ -5,7 +5,7 @@ namespace Omnipay\NABTransact\Message;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
- * NABTransact Direct Post Complete Purchase Response
+ * NABTransact Direct Post Complete Purchase Response.
  */
 class DirectPostCompletePurchaseResponse extends AbstractResponse
 {

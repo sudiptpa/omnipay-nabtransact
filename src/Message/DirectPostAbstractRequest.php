@@ -3,7 +3,7 @@
 namespace Omnipay\NABTransact\Message;
 
 /**
- * NABTransact Direct Post Abstract Request
+ * NABTransact Direct Post Abstract Request.
  */
 abstract class DirectPostAbstractRequest extends AbstractRequest
 {

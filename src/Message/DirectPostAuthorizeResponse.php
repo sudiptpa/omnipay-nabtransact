@@ -7,7 +7,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * NABTransact Direct Post Authorize Response
+ * NABTransact Direct Post Authorize Response.
  */
 class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {

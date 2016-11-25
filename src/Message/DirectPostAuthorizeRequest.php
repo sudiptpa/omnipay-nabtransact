@@ -3,7 +3,7 @@
 namespace Omnipay\NABTransact\Message;
 
 /**
- * NABTransact Direct Post Authorize Request
+ * NABTransact Direct Post Authorize Request.
  */
 class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
 {
@@ -59,6 +59,7 @@ class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)

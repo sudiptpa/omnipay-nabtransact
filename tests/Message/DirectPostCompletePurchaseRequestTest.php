@@ -14,14 +14,14 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
     public function testGenerateResponseFingerprint()
     {
         $this->request->initialize(array(
-            'amount' => '465.18',
+            'amount'              => '465.18',
             'transactionPassword' => 'abc123',
         ));
 
         $data = array(
-            'timestamp' => '20130602102927',
-            'merchant' => 'ABC0030',
-            'refid' => '222',
+            'timestamp'   => '20130602102927',
+            'merchant'    => 'ABC0030',
+            'refid'       => '222',
             'summarycode' => '2',
         );
 
@@ -31,23 +31,23 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
     public function testSuccess()
     {
         $this->request->initialize(array(
-            'amount' => '355.00',
+            'amount'              => '355.00',
             'transactionPassword' => 'abc123',
         ));
 
         $this->getHttpRequest()->query->replace(array(
-            'timestamp' => '20130602112954',
+            'timestamp'            => '20130602112954',
             'callback_status_code' => '',
-            'fingerprint' => 'd9b40fc6f841f41ef3475220fe6316406a5256ce',
-            'txnid' => '205861',
-            'merchant' => 'ABC0030',
-            'restext' => 'Approved',
-            'rescode' => '00',
-            'expirydate' => '032016',
-            'settdate' => '20130602',
-            'refid' => '226',
-            'pan' => '444433...111',
-            'summarycode' => '1',
+            'fingerprint'          => 'd9b40fc6f841f41ef3475220fe6316406a5256ce',
+            'txnid'                => '205861',
+            'merchant'             => 'ABC0030',
+            'restext'              => 'Approved',
+            'rescode'              => '00',
+            'expirydate'           => '032016',
+            'settdate'             => '20130602',
+            'refid'                => '226',
+            'pan'                  => '444433...111',
+            'summarycode'          => '1',
         ));
 
         $response = $this->request->send();
@@ -64,23 +64,23 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
     public function testFailure()
     {
         $this->request->initialize(array(
-            'amount' => '465.18',
+            'amount'              => '465.18',
             'transactionPassword' => 'abc123',
         ));
 
         $this->getHttpRequest()->query->replace(array(
-            'timestamp' => '20130602102927',
+            'timestamp'            => '20130602102927',
             'callback_status_code' => '',
-            'fingerprint' => '0516a31bf96ad89c354266afb9bd4be43aaf853f',
-            'txnid' => '205833',
-            'merchant' => 'ABC0030',
-            'restext' => 'Customer Dispute',
-            'rescode' => '18',
-            'expirydate' => '052016',
-            'settdate' => '20130602',
-            'refid' => '222',
-            'pan' => '444433...111',
-            'summarycode' => '2',
+            'fingerprint'          => '0516a31bf96ad89c354266afb9bd4be43aaf853f',
+            'txnid'                => '205833',
+            'merchant'             => 'ABC0030',
+            'restext'              => 'Customer Dispute',
+            'rescode'              => '18',
+            'expirydate'           => '052016',
+            'settdate'             => '20130602',
+            'refid'                => '222',
+            'pan'                  => '444433...111',
+            'summarycode'          => '2',
         ));
 
         $response = $this->request->send();

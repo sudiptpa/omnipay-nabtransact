@@ -5,7 +5,7 @@ namespace Omnipay\NABTransact;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * NABTransact Direct Post Gateway
+ * NABTransact Direct Post Gateway.
  */
 class DirectPostGateway extends AbstractGateway
 {
@@ -22,9 +22,9 @@ class DirectPostGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'merchantId' => '',
+            'merchantId'          => '',
             'transactionPassword' => '',
-            'testMode' => false,
+            'testMode'            => false,
         );
     }
 
@@ -38,6 +38,7 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setMerchantId($value)
@@ -55,6 +56,7 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setTransactionPassword($value)
@@ -64,6 +66,7 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function authorize(array $parameters = array())
@@ -73,6 +76,7 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function completeAuthorize(array $parameters = array())
@@ -82,6 +86,7 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function purchase(array $parameters = array())
@@ -91,6 +96,7 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function completePurchase(array $parameters = array())
