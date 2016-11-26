@@ -9,9 +9,17 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 class DirectPostCompletePurchaseResponse extends AbstractResponse
 {
+    /**
+     * @return mixed
+     */
     public function isSuccessful()
     {
-        return isset($this->data['summarycode']) && $this->data['summarycode'] == 1;
+        return $this->summaryCode() && (int) $this->getCode() == 00;
+    }
+
+    public function summaryCode()
+    {
+        return isset($this->data['summarycode']) && (int) $this->data['summarycode'] == 1;
     }
 
     /**

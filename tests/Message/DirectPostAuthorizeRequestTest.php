@@ -12,15 +12,15 @@ class DirectPostAuthorizeRequestTest extends TestCase
 
         $this->request->initialize(
             array(
-                'merchantId'          => 'foo',
-                'transactionPassword' => 'bar',
-                'amount'              => '12.00',
-                'returnUrl'           => 'https://www.abc.com/return',
-                'card'                => array(
-                    'number'      => '4444333322221111',
+                'merchantId' => 'XYZ0010',
+                'transactionPassword' => 'abcd1234',
+                'amount' => '12.00',
+                'returnUrl' => 'https://www.abc.com/return',
+                'card' => array(
+                    'number' => '4444333322221111',
                     'expiryMonth' => '6',
-                    'expiryYear'  => '2030',
-                    'cvv'         => '123',
+                    'expiryYear' => '2030',
+                    'cvv' => '123',
                 ),
             )
         );
@@ -29,9 +29,9 @@ class DirectPostAuthorizeRequestTest extends TestCase
     public function testFingerprint()
     {
         $data = $this->request->getData();
-        $data['EPS_TIMESTAMP'] = '20130416123332';
+        $data['EPS_TIMESTAMP'] = '20161126053143';
 
-        $this->assertSame('46b6a59173c9fea66f71b8679558837895f0bce8', $this->request->generateFingerprint($data));
+        $this->assertSame('687bb11413254824e3f854be330b5b5f2efaaf6d', $this->request->generateFingerprint($data));
     }
 
     public function testSend()
