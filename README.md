@@ -33,7 +33,7 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* NAB Transact SecureXML API
+### NAB Transact SecureXML API
 
 ```php
     use Omnipay\Omnipay;
@@ -64,6 +64,44 @@ The following gateways are provided by this package:
  
     $response = $transaction->send();
  
+    if ($response->isSuccessful()) {
+        echo sprintf('Transaction %s was successful!', $response->getTransactionReference());
+    } else {
+        echo sprintf('Transaction %s failed: %s', $response->getTransactionReference(), $response->getMessage());
+    }
+
+```
+### NAB Transact DirectPost v2
+
+```php
+    $gateway = Omnipay::create('NABTransact_DirectPost');
+
+    $gateway->setMerchantId('XYZ0010');
+    $gateway->setTransactionPassword('abcd1234');
+
+    $gateway->setTestMode(true);
+
+    $card = new CreditCard(array(
+        'firstName' => 'Sujip',
+        'lastName' => 'Thapa',
+        'number' => '4444333322221111',
+        'expiryMonth' => '10',
+        'expiryYear' => '2030',
+        'cvv' => '123',
+    ));
+
+    $response = $gateway->purchase(array(
+        'amount' => '12.00',
+        'transactionId' => 'ORDER-ZYX8',
+        'currency' => 'AUD',
+        'card' => $card,
+    ))
+        ->send();
+
+    if ($response->isRedirect()) {
+        $response->redirect();
+    }
+
     if ($response->isSuccessful()) {
         echo sprintf('Transaction %s was successful!', $response->getTransactionReference());
     } else {
