@@ -15,11 +15,10 @@ class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
     /**
      * @return mixed
      */
-    public function getData()
+    public function getBaseData()
     {
-        $this->validate('amount', 'returnUrl', 'card');
-
         $data = array();
+
         $data['EPS_MERCHANT'] = $this->getMerchantId();
         $data['EPS_TXNTYPE'] = $this->txnType;
         $data['EPS_IP'] = $this->getClientIp();
@@ -32,29 +31,21 @@ class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
         $data['EPS_REDIRECT'] = 'TRUE';
         $data['EPS_CURRENCY'] = $this->getCurrency();
 
-        $data = array_replace($data, $this->getCardData());
-
         return $data;
     }
 
     /**
-     * @param array $data
+     * @return mixed
      */
-    public function generateFingerprint(array $data)
+    public function getData()
     {
-        $hash = implode(
-            '|',
-            array(
-                $data['EPS_MERCHANT'],
-                $this->getTransactionPassword(),
-                $data['EPS_TXNTYPE'],
-                $data['EPS_REFERENCEID'],
-                $data['EPS_AMOUNT'],
-                $data['EPS_TIMESTAMP'],
-            )
-        );
+        $this->validate('amount', 'returnUrl', 'card');
 
-        return sha1($hash);
+        $data = $this->getBaseData();
+
+        $data = array_replace($data, $this->getCardData());
+
+        return $data;
     }
 
     /**
