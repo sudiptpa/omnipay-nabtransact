@@ -12,15 +12,15 @@ class DirectPostPurchaseRequestTest extends TestCase
 
         $this->request->initialize(
             array(
-                'merchantId' => 'XYZ0010',
+                'merchantId'          => 'XYZ0010',
                 'transactionPassword' => 'abcd1234',
-                'amount' => '12.00',
-                'returnUrl' => 'https://www.example.com/return',
-                'card' => array(
-                    'number' => '4444333322221111',
+                'amount'              => '12.00',
+                'returnUrl'           => 'https://www.example.com/return',
+                'card'                => array(
+                    'number'      => '4444333322221111',
                     'expiryMonth' => '06',
-                    'expiryYear' => '2020',
-                    'cvv' => '123',
+                    'expiryYear'  => '2020',
+                    'cvv'         => '123',
                 ),
             )
         );
