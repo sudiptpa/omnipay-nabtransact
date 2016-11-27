@@ -5,11 +5,10 @@ namespace Omnipay\NABTransact\Message;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * UnionPayCompletePurchaseResponse
+ * UnionPayCompletePurchaseResponse.
  */
 class UnionPayCompletePurchaseResponse extends DirectPostCompletePurchaseResponse
 {
-
     /**
      * @param RequestInterface $request
      * @param $data
@@ -22,5 +21,4 @@ class UnionPayCompletePurchaseResponse extends DirectPostCompletePurchaseRespons
 
         parent::__construct($request, $data);
     }
-
 }

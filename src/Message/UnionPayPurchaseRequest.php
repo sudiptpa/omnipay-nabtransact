@@ -3,11 +3,10 @@
 namespace Omnipay\NABTransact\Message;
 
 /**
- * UnionPayPurchaseRequest
+ * UnionPayPurchaseRequest.
  */
 class UnionPayPurchaseRequest extends DirectPostAbstractRequest
 {
-
     /**
      * @var string
      */
@@ -22,7 +21,7 @@ class UnionPayPurchaseRequest extends DirectPostAbstractRequest
 
         $data = $this->getBaseData();
 
-        $data['EPS_PAYMENTCHOICE'] = "UPOP";
+        $data['EPS_PAYMENTCHOICE'] = 'UPOP';
 
         return $data;
     }
