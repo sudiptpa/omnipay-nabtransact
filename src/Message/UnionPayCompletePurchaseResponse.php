@@ -9,7 +9,6 @@ use Omnipay\Common\Message\RequestInterface;
  */
 class UnionPayCompletePurchaseResponse extends DirectPostCompletePurchaseResponse
 {
-
     /**
      * @param RequestInterface $request
      * @param $data
@@ -22,5 +21,4 @@ class UnionPayCompletePurchaseResponse extends DirectPostCompletePurchaseRespons
 
         parent::__construct($request, $data);
     }
-
 }

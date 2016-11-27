@@ -13,6 +13,8 @@ class UnionPayCompletePurchaseRequest extends DirectPostCompletePurchaseRequest
      */
     public function sendData($data)
     {
-        return $this->response = new UnionPayCompletePurchaseResponse($this, $data);
+        $this->response = new UnionPayCompletePurchaseResponse($this, $data);
+
+        return $this->response;
     }
 }
