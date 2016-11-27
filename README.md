@@ -110,6 +110,59 @@ The following gateways are provided by this package:
 
 ```
 
+### NAB Transact DirectPost v2 UnionPay Online Payment
+
+```php
+    $gateway = Omnipay::create('NABTransact_UnionPay');
+
+    $gateway->setMerchantId('XYZ0010');
+    $gateway->setTransactionPassword('abcd1234');
+
+    $gateway->setTestMode(true);
+
+    /*
+     * The parameter transactionId must be alpha-numeric and 8 to 32 characters in length
+     */
+
+    $response = $gateway->purchase(array(
+        'amount' => '12.00',
+        'transactionId' => '1234566789205067',
+        'currency' => 'AUD',
+        'returnUrl' => 'http://example.com/payment/response',
+    ))
+        ->send();
+
+    if ($response->isRedirect()) {
+        $response->redirect();
+    }
+```
+
+#### Complete Purchase
+
+```php
+    $gateway = Omnipay::create('NABTransact_UnionPay');
+
+    $gateway->setMerchantId('XYZ0010');
+    $gateway->setTransactionPassword('abcd1234');
+
+    $gateway->setTestMode(true);
+
+    $response = $gateway->completePurchase(array(
+        'amount' => '12.00',
+        'transactionId' => '1234566789205067',
+        'currency' => 'AUD',
+        'returnUrl' => 'http://example.com/payment/response',
+    ))
+        ->send();
+
+    if ($response->isSuccessful()) {
+        echo sprintf('Transaction %s was successful!', $response->getTransactionReference());
+    } else {
+        echo sprintf('Transaction %s failed: %s', $response->getTransactionReference(), $response->getMessage());
+    }
+
+```
+
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
 
