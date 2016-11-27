@@ -137,7 +137,7 @@ The following gateways are provided by this package:
     }
 ```
 
-#### Complet Purchase
+#### Complete Purchase
 
 ```php
     $gateway = Omnipay::create('NABTransact_UnionPay');
