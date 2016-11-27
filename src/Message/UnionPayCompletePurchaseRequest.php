@@ -3,12 +3,13 @@
 namespace Omnipay\NABTransact\Message;
 
 /**
- * UnionPayCompletePurchaseRequest
+ * UnionPayCompletePurchaseRequest.
  */
 class UnionPayCompletePurchaseRequest extends DirectPostCompletePurchaseRequest
 {
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)

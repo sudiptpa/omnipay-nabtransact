@@ -5,7 +5,7 @@ namespace Omnipay\NABTransact\Message;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * UnionPayCompletePurchaseResponse
+ * UnionPayCompletePurchaseResponse.
  */
 class UnionPayCompletePurchaseResponse extends DirectPostCompletePurchaseResponse
 {
