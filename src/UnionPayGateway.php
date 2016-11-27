@@ -29,13 +29,4 @@ class UnionPayGateway extends DirectPostGateway
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\UnionPayCompletePurchaseRequest', $parameters);
     }
-
-    /**
-     * @param array $parameters
-     * @return mixed
-     */
-    public function refund(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\NABTransact\Message\UnionPayRefundRequest', $parameters);
-    }
 }

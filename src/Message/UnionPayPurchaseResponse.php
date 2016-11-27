@@ -7,7 +7,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * NABTransact UnionPayPurchase Response.
+ * UnionPayPurchaseResponse
  */
 class UnionPayPurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
