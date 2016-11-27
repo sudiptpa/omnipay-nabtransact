@@ -14,6 +14,7 @@ class UnionPayGateway extends DirectPostGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function purchase(array $parameters = array())
@@ -23,6 +24,7 @@ class UnionPayGateway extends DirectPostGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function completePurchase(array $parameters = array())
