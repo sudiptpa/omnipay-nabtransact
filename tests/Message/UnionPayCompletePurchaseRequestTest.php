@@ -15,9 +15,9 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
     {
         $data = array();
 
-        $data['restext'] = "Approved";
-        $data['rescode'] = "00";
-        $data['summarycode'] = "1";
+        $data['restext'] = 'Approved';
+        $data['rescode'] = '00';
+        $data['summarycode'] = '1';
         $data['txnid'] = '12345';
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
@@ -35,9 +35,9 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
     {
         $data = array();
 
-        $data['restext'] = "Error";
-        $data['txnid'] = "12345";
-        $data['summarycode'] = "3";
+        $data['restext'] = 'Error';
+        $data['txnid'] = '12345';
+        $data['summarycode'] = '3';
         $data['rescode'] = '06';
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
