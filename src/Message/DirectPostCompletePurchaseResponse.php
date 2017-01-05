@@ -14,7 +14,7 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->summaryCode() && (int) $this->getCode() == 00;
+        return $this->summaryCode() && (int) in_array($this->getCode(), [00, 08, 11]);
     }
 
     public function summaryCode()
