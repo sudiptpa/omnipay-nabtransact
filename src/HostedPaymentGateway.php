@@ -5,12 +5,13 @@ namespace Omnipay\NABTransact;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * HostedPayment Gateway
+ * HostedPayment Gateway.
  */
 class HostedPaymentGateway extends AbstractGateway
 {
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function completePurchase(array $parameters = array())
@@ -25,6 +26,7 @@ class HostedPaymentGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
      * @return mixed
      */
     public function purchase(array $parameters = array())

@@ -3,7 +3,7 @@
 namespace Omnipay\NABTransact\Message;
 
 /**
- * HostedPayment Purchase Request
+ * HostedPayment Purchase Request.
  */
 class HostedPaymentPurchaseRequest extends AbstractRequest
 {
@@ -70,6 +70,7 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)
@@ -89,6 +90,7 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function setReturnUrlText($value)

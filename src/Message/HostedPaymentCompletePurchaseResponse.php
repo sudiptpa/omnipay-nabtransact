@@ -6,7 +6,7 @@ use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * NABTransact HostedPaymentCompletePurchaseResponse
+ * NABTransact HostedPaymentCompletePurchaseResponse.
  */
 class HostedPaymentCompletePurchaseResponse extends AbstractResponse
 {

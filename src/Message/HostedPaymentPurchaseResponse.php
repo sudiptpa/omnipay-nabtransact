@@ -7,7 +7,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * NABTransact HostedPayment Purchase Response
+ * NABTransact HostedPayment Purchase Response.
  */
 class HostedPaymentPurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
