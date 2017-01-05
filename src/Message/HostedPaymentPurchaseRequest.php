@@ -34,7 +34,7 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
 
         $data['vendor_name'] = $this->getMerchantId();
         $data['payment_alert'] = $this->getPaymentAlertEmail();
-        $data['payment_reference'] = $this->getTransactionReference();
+        $data['payment_reference'] = $this->getTransactionId();
         $data['currency'] = $this->getCurrency();
         $data['return_link_url'] = $this->getReturnUrl();
         $data['reply_link_url'] = $this->getNotifyUrl() ?: $this->getReturnUrl();
@@ -58,14 +58,6 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
     public function getReturnUrlText()
     {
         return $this->getParameter('returnUrlText');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTransactionReference()
-    {
-        return $this->getParameter('transactionReference');
     }
 
     /**
@@ -96,15 +88,5 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
     public function setReturnUrlText($value)
     {
         return $this->getParameter('returnUrlText', $value);
-    }
-
-    /**
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function setTransactionReference($value)
-    {
-        return $this->setParameter('transactionReference', $value);
     }
 }
