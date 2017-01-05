@@ -6,10 +6,10 @@
 processing library for PHP 5.3+. This package implements NAB Transact support for Omnipay.
 
 [![StyleCI](https://styleci.io/repos/74269379/shield?branch=master)](https://styleci.io/repos/74269379)
-[![Build Status](https://travis-ci.org/sudiptpa/omnipay-nabtransact.svg?branch=master)](https://travis-ci.org/sudiptpa/omnipay-nabtransact)
-[![Latest Stable Version](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/v/stable)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![Total Downloads](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/downloads)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/sudiptpa/omnipay-nabtransact/master/LICENSE)
+[![Build Status](https://travis-ci.org/sudiptpa/omnipay-nabtransact.svg?branch=master&style=flat-square)](https://travis-ci.org/sudiptpa/omnipay-nabtransact)
+[![Latest Stable Version](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/v/stable?style=flat-square)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+[![Total Downloads](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/downloads?style=flat-square)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/sudiptpa/omnipay-nabtransact/master/LICENSE)
 
 ## Installation
 
