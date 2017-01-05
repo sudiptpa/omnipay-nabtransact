@@ -37,7 +37,7 @@ class HostedPaymentPurchaseResponse extends AbstractResponse implements Redirect
 
     public function getRedirectMethod()
     {
-        return 'GET';
+        return 'POST';
     }
 
     /**
