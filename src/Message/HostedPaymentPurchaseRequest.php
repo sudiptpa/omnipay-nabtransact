@@ -25,7 +25,7 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
         $this->validate(
             'amount',
             'returnUrl',
-            'transactionReference',
+            'transactionId',
             'merchantId',
             'paymentAlertEmail'
         );
@@ -42,6 +42,14 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
         $data['total_amount'] = $this->getAmount();
 
         return $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMerchantId()
+    {
+        return $this->getParameter('merchantId');
     }
 
     /**
@@ -87,6 +95,6 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
      */
     public function setReturnUrlText($value)
     {
-        return $this->getParameter('returnUrlText', $value);
+        return $this->setParameter('returnUrlText', $value);
     }
 }
