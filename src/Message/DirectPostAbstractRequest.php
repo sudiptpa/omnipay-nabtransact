@@ -10,7 +10,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
     /**
      * @var string
      */
-    public $testEndpoint = 'https://transact.nab.com.au/test/directpostv2/authorise';
+    public $testEndpoint = 'https://demo.transact.nab.com.au/directpostv2/authorise';
 
     /**
      * @var string

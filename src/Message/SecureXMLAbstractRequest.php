@@ -10,7 +10,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     /**
      * @var string
      */
-    public $testEndpoint = 'https://transact.nab.com.au/test/xmlapi/payment';
+    public $testEndpoint = 'https://demo.transact.nab.com.au/xmlapi/payment';
 
     /**
      * @var string

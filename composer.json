@@ -24,6 +24,7 @@
         }
     },
     "require": {
+        "cweagans/composer-patches": "~1.6",
         "omnipay/common": "~2.3"
     },
     "require-dev": {
@@ -34,6 +35,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
+        },
+        "patches": {
+            "guzzle/guzzle": {
+                "Update CA": "patches/guzzle-guzzle-update-cacert.patch"
+            }
         }
     }
 }
