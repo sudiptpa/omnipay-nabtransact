@@ -33,6 +33,10 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
+* NABTransact_DirectPost (NAB Transact Direct Post)
+* NABTransact_UnionPay (UnionPay via NAB Transact)
+* NABTransact_SecureXML (NAB Transact Secure XML)
+
 ### NAB Transact SecureXML API
 
 ```php
