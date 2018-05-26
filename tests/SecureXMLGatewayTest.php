@@ -16,7 +16,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
 
     public function testEcho()
     {
-        $request = $this->gateway->echoTest(array('amount' => '10.00', 'transactionId' => 'Order-YKHU67'));
+        $request = $this->gateway->echoTest(['amount' => '10.00', 'transactionId' => 'Order-YKHU67']);
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLEchoTestRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
         $this->assertSame('Order-YKHU67', $request->getTransactionId());
@@ -24,7 +24,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
 
     public function testAuthorize()
     {
-        $request = $this->gateway->authorize(array('amount' => '10.00'));
+        $request = $this->gateway->authorize(['amount' => '10.00']);
 
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLAuthorizeRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
@@ -32,7 +32,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
 
     public function testCapture()
     {
-        $request = $this->gateway->capture(array('amount' => '10.00', 'transactionId' => 'Order-YKHU67'));
+        $request = $this->gateway->capture(['amount' => '10.00', 'transactionId' => 'Order-YKHU67']);
 
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLCaptureRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
@@ -41,7 +41,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
 
     public function testPurchase()
     {
-        $request = $this->gateway->purchase(array('amount' => '10.00'));
+        $request = $this->gateway->purchase(['amount' => '10.00']);
 
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLPurchaseRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
@@ -49,7 +49,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
 
     public function testRefund()
     {
-        $request = $this->gateway->refund(array('amount' => '10.00', 'transactionId' => 'Order-YKHU67'));
+        $request = $this->gateway->refund(['amount' => '10.00', 'transactionId' => 'Order-YKHU67']);
 
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLRefundRequest', $request);
         $this->assertSame('10.00', $request->getAmount());

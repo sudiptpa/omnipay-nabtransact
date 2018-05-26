@@ -10,45 +10,25 @@ class SecureXMLAuthorizeRequestTest extends TestCase
     {
         $this->request = new SecureXMLAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
 
-        $this->request->initialize(
-            array(
-                'merchantId'          => 'XYZ0010',
-                'transactionPassword' => 'abcd1234',
-                'testMode'            => true,
-                'amount'              => '12.00',
-                'transactionId'       => '1234',
-                'card'                => array(
-                    'number'         => '4444333322221111',
-                    'expiryMonth'    => '10',
-                    'expiryYear'     => '2030',
-                    'cvv'            => '123',
-                    'cardHolderName' => 'Sujip Thapa',
-                ),
-            )
-        );
+        $this->request->initialize([
+            'merchantId'          => 'XYZ0010',
+            'transactionPassword' => 'abcd1234',
+            'testMode'            => true,
+            'amount'              => '12.00',
+            'transactionId'       => '1234',
+            'card'                => [
+                'number'         => '4444333322221111',
+                'expiryMonth'    => '10',
+                'expiryYear'     => '2030',
+                'cvv'            => '123',
+                'cardHolderName' => 'Sujip Thapa',
+            ],
+        ]);
     }
 
     public function testSendSuccess()
     {
-        $data = array();
-
-        $data['RequestType'] = 'Payment';
-        $data['statusDescription'] = 'Normal';
-        $data['statusCode'] = '000';
-        $data['apiVersion'] = 'xml-4.2';
-        $data['txnType'] = '10';
-        $data['txnSource'] = '23';
-        $data['amount'] = '12.00';
-        $data['currency'] = 'AUD';
-        $data['approved'] = 'Yes';
-        $data['responseCode'] = '00';
-        $data['responseText'] = 'Approved';
-        $data['txnID'] = '1234';
-        $data['cardDescription'] = 'Visa';
-        $data['expiryDate'] = '10/30';
-        $data['cardType'] = '6';
-
-        $response = new SecureXMLResponse($this->getMockRequest(), $data);
+        $this->setMockHttpResponse('SecureXMLAuthorizeRequestSuccess.txt');
 
         $response = $this->request->send();
 

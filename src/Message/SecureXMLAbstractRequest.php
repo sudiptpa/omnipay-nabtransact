@@ -2,6 +2,8 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use SimpleXMLElement;
+
 /**
  * NABTransact SecureXML Abstract Request.
  */
@@ -30,7 +32,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     /**
      * @var array
      */
-    protected $requiredFields = array();
+    protected $requiredFields = [];
 
     /**
      * Set the messageID on the request.
@@ -71,22 +73,19 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         return $this->getParameter('messageId');
     }
 
-    /**
-     * @param $data
-     *
-     * @return mixed
-     */
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->post($this->getEndpoint(), null, $data->asXML())->send();
+        $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), [], $data->asXML());
 
-        return $this->response = new SecureXMLResponse($this, $httpResponse->xml());
+        $xml = new SimpleXMLElement($httpResponse->getBody()->getContents());
+
+        return $this->response = new SecureXMLResponse($this, $xml);
     }
 
     /**
      * XML Template of a NABTransactMessage.
      *
-     * @return \SimpleXMLElement NABTransactMessage template.
+     * @return SimpleXMLElement NABTransactMessage template.
      */
     protected function getBaseXML()
     {
@@ -94,7 +93,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
             $this->validate($field);
         }
 
-        $xml = new \SimpleXMLElement('<NABTransactMessage/>');
+        $xml = new SimpleXMLElement('<NABTransactMessage/>');
 
         $messageInfo = $xml->addChild('MessageInfo');
         $messageInfo->messageID = $this->getMessageId();
@@ -114,7 +113,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     /**
      * XML template of a NABTransactMessage Payment.
      *
-     * @return \SimpleXMLElement NABTransactMessage with transaction details.
+     * @return SimpleXMLElement NABTransactMessage with transaction details.
      */
     protected function getBasePaymentXML()
     {
@@ -138,7 +137,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     /**
      * NABTransactMessage with transaction and card details.
      *
-     * @return \SimpleXMLElement
+     * @return SimpleXMLElement
      */
     protected function getBasePaymentXMLWithCard()
     {

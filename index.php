@@ -12,22 +12,21 @@ $gateway->setTransactionPassword('abcd1234');
 
 $gateway->setTestMode(true);
 
-$card = new CreditCard(array(
+$card = new CreditCard([
     'firstName'   => 'Sujip',
     'lastName'    => 'Thapa',
     'number'      => '4444333322221111',
-    'expiryMonth' => '10',
-    'expiryYear'  => '2030',
+    'expiryMonth' => '12',
+    'expiryYear'  => date('Y'),
     'cvv'         => '123',
-));
+]);
 
-$response = $gateway->purchase(array(
+$response = $gateway->purchase([
     'amount'        => '12.00',
-    'transactionId' => 'ORDER-ZYX8',
+    'transactionId' => 'ORDER-ZYX8789',
     'currency'      => 'AUD',
     'card'          => $card,
-))
-    ->send();
+])->send();
 
 $message = sprintf(
     'Transaction with reference code  (%s) - %s',

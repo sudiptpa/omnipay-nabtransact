@@ -15,7 +15,7 @@ class SecureXMLPurchaseRequest extends SecureXMLAbstractRequest
     /**
      * @var array
      */
-    protected $requiredFields = array('amount', 'card', 'transactionId');
+    protected $requiredFields = ['amount', 'card', 'transactionId'];
 
     /**
      * @return mixed

@@ -16,11 +16,11 @@ class SecureXMLGateway extends AbstractGateway
 
     public function getDefaultParameters()
     {
-        return array(
+        return [
             'merchantId'          => '',
             'transactionPassword' => '',
             'testMode'            => false,
-        );
+        ];
     }
 
     /**
@@ -64,7 +64,7 @@ class SecureXMLGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function authorize(array $parameters = array())
+    public function authorize(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLAuthorizeRequest', $parameters);
     }
@@ -74,7 +74,7 @@ class SecureXMLGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function capture(array $parameters = array())
+    public function capture(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLCaptureRequest', $parameters);
     }
@@ -84,7 +84,7 @@ class SecureXMLGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function purchase(array $parameters = array())
+    public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLPurchaseRequest', $parameters);
     }
@@ -94,7 +94,7 @@ class SecureXMLGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function refund(array $parameters = array())
+    public function refund(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLRefundRequest', $parameters);
     }
@@ -104,7 +104,7 @@ class SecureXMLGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function echoTest(array $parameters = array())
+    public function echoTest(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLEchoTestRequest', $parameters);
     }

@@ -30,7 +30,7 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
             'paymentAlertEmail'
         );
 
-        $data = array();
+        $data = [];
 
         $data['vendor_name'] = $this->getMerchantId();
         $data['payment_alert'] = $this->getPaymentAlertEmail();

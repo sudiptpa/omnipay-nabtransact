@@ -21,7 +21,7 @@ class SecureXMLCaptureRequest extends SecureXMLAbstractRequest
     /**
      * @var array
      */
-    protected $requiredFields = array('amount', 'transactionId', 'preauthId');
+    protected $requiredFields = ['amount', 'transactionId', 'preauthId'];
 
     /**
      * @return mixed
