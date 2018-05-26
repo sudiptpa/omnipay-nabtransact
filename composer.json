@@ -24,8 +24,7 @@
       }
    },
    "require":{
-      "omnipay/common":"^3",
-      "cweagans/composer-patches":"^1.6"
+      "omnipay/common":"^3"
    },
    "require-dev":{
       "omnipay/tests":"^3",
@@ -35,11 +34,6 @@
    "extra":{
       "branch-alias":{
          "dev-master":"3.0.x-dev"
-      },
-      "patches":{
-         "guzzle/guzzle":{
-            "Update CA":"patches/guzzle-guzzle-update-cacert.patch"
-         }
       }
    },
    "scripts":{
