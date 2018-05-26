@@ -73,10 +73,6 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         return $this->getParameter('messageId');
     }
 
-    /**
-     * @param $data
-     * @return mixed
-     */
     public function sendData($data)
     {
         $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), [], $data->asXML());

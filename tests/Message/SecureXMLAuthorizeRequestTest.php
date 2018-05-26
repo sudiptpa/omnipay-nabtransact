@@ -45,7 +45,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->assertNotNull($response->getTransactionId());
         $this->assertSame('Approved', $response->getMessage());
         $this->assertSame('00', $response->getCode());
-        $this->assertSame('0', (string) $data->Payment->TxnList->Txn->txnType);
+        $this->assertSame('10', (string) $data->Payment->TxnList->Txn->txnType);
     }
 
     public function testSendFailure()
