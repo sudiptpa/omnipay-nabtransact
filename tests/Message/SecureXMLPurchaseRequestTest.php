@@ -28,24 +28,7 @@ class SecureXMLPurchaseRequestTest extends TestCase
 
     public function testSendSuccess()
     {
-        $data = [];
-
-        $data['RequestType'] = 'Payment';
-        $data['statusDescription'] = 'Normal';
-        $data['statusCode'] = '000';
-        $data['apiVersion'] = 'xml-4.2';
-        $data['txnType'] = '10';
-        $data['txnSource'] = '23';
-        $data['amount'] = '12.00';
-        $data['currency'] = 'AUD';
-        $data['approved'] = 'Yes';
-        $data['responseCode'] = '00';
-        $data['responseText'] = 'Approved';
-        $data['cardDescription'] = 'Visa';
-        $data['expiryDate'] = '10/30';
-        $data['cardType'] = '6';
-
-        $response = new SecureXMLResponse($this->getMockRequest(), $data);
+        $this->setMockHttpResponse('SecureXMLPurchaseRequestSendSuccess.txt');
 
         $response = $this->request->send();
         $data = $response->getData();

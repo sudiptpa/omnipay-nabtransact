@@ -19,14 +19,7 @@ class SecureXMLEchoTestRequestTest extends TestCase
 
     public function testSuccess()
     {
-        $data = [];
-
-        $data['RequestType'] = 'Echo';
-        $data['statusDescription'] = 'Normal';
-        $data['statusCode'] = '000';
-        $data['apiVersion'] = 'xml-4.2';
-
-        $response = new SecureXMLResponse($this->getMockRequest(), $data);
+        $this->setMockHttpResponse('SecureXMLEchoTestRequestSuccess.txt');
 
         $response = $this->request->send();
         $data = $response->getData();

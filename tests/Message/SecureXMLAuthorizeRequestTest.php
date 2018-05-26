@@ -11,16 +11,16 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->request = new SecureXMLAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId'          => 'XYZ0010',
+            'merchantId' => 'XYZ0010',
             'transactionPassword' => 'abcd1234',
-            'testMode'            => true,
-            'amount'              => '12.00',
-            'transactionId'       => '1234',
-            'card'                => [
-                'number'         => '4444333322221111',
-                'expiryMonth'    => '10',
-                'expiryYear'     => '2030',
-                'cvv'            => '123',
+            'testMode' => true,
+            'amount' => '12.00',
+            'transactionId' => '1234',
+            'card' => [
+                'number' => '4444333322221111',
+                'expiryMonth' => '10',
+                'expiryYear' => '2030',
+                'cvv' => '123',
                 'cardHolderName' => 'Sujip Thapa',
             ],
         ]);
@@ -28,25 +28,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
     public function testSendSuccess()
     {
-        $data = [];
-
-        $data['RequestType'] = 'Payment';
-        $data['statusDescription'] = 'Normal';
-        $data['statusCode'] = '000';
-        $data['apiVersion'] = 'xml-4.2';
-        $data['txnType'] = '10';
-        $data['txnSource'] = '23';
-        $data['amount'] = '12.00';
-        $data['currency'] = 'AUD';
-        $data['approved'] = 'Yes';
-        $data['responseCode'] = '00';
-        $data['responseText'] = 'Approved';
-        $data['txnID'] = '1234';
-        $data['cardDescription'] = 'Visa';
-        $data['expiryDate'] = '10/30';
-        $data['cardType'] = '6';
-
-        $response = new SecureXMLResponse($this->getMockRequest(), $data);
+        $this->setMockHttpResponse('SecureXMLAuthorizeRequestSuccess.txt');
 
         $response = $this->request->send();
 
@@ -63,7 +45,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->assertNotNull($response->getTransactionId());
         $this->assertSame('Approved', $response->getMessage());
         $this->assertSame('00', $response->getCode());
-        $this->assertSame('10', (string) $data->Payment->TxnList->Txn->txnType);
+        $this->assertSame('0', (string) $data->Payment->TxnList->Txn->txnType);
     }
 
     public function testSendFailure()
