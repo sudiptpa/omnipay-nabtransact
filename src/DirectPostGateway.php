@@ -22,9 +22,9 @@ class DirectPostGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'merchantId' => '',
+            'merchantId'          => '',
             'transactionPassword' => '',
-            'testMode' => false,
+            'testMode'            => false,
         ];
     }
 
@@ -69,7 +69,7 @@ class DirectPostGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function authorize(array $parameters = array())
+    public function authorize(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostAuthorizeRequest', $parameters);
     }
@@ -79,7 +79,7 @@ class DirectPostGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function completeAuthorize(array $parameters = array())
+    public function completeAuthorize(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $parameters);
     }
@@ -89,7 +89,7 @@ class DirectPostGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function purchase(array $parameters = array())
+    public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostPurchaseRequest', $parameters);
     }
@@ -99,7 +99,7 @@ class DirectPostGateway extends AbstractGateway
      *
      * @return mixed
      */
-    public function completePurchase(array $parameters = array())
+    public function completePurchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $parameters);
     }
