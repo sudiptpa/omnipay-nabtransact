@@ -13,7 +13,7 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
 
     public function testUnionPayCompletePurchaseSuccess()
     {
-        $data = array();
+        $data = [];
 
         $data['restext'] = 'Approved';
         $data['rescode'] = '00';
@@ -33,7 +33,7 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
 
     public function testUnionPayCompletePurchaseFailure()
     {
-        $data = array();
+        $data = [];
 
         $data['restext'] = 'Error';
         $data['txnid'] = '12345';

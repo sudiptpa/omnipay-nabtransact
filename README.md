@@ -3,7 +3,7 @@
 **NAB Transact driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements NAB Transact support for Omnipay.
+processing library for PHP. This package implements NAB Transact support for Omnipay.
 
 [![StyleCI](https://styleci.io/repos/74269379/shield?style=flat&branch=master)](https://styleci.io/repos/74269379)
 [![Build Status](https://travis-ci.org/sudiptpa/omnipay-nabtransact.svg?branch=master&style=flat-square)](https://travis-ci.org/sudiptpa/omnipay-nabtransact)
@@ -13,25 +13,19 @@ processing library for PHP 5.3+. This package implements NAB Transact support fo
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
-to your `composer.json` file:
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/nabtransact` with Composer:
 
-```json
-{
-    "require": {
-        "sudiptpa/omnipay-nabtransact": "~2.0"
-    }
-}
 ```
-
-And run composer to update your dependencies:
-
-    $ curl -s http://getcomposer.org/installer | php
-    $ php composer.phar update
+composer require league/omnipay omnipay/nabtransact
+```
 
 ## Basic Usage
 
 The following gateways are provided by this package:
+
+* NABTransact_DirectPost (NAB Transact Direct Post v2)
+* NABTransact_SecureXML (NAB Transact SecurePay XML)
+* NABTransact_UnionPay (UnionPay via NAB Transact)
 
 ### NAB Transact SecureXML API
 
@@ -43,17 +37,17 @@ The following gateways are provided by this package:
     $gateway->setMerchantId('XYZ0010');
     $gateway->setTransactionPassword('abcd1234');
     $gateway->setTestMode(true);
- 
+
     $card = new CreditCard([
             'firstName' => 'Sujip',
-            'lastName' => 'Thapa',            
+            'lastName' => 'Thapa',
             'number'      => '4444333322221111',
             'expiryMonth' => '06',
             'expiryYear'  => '2030',
             'cvv'         => '123',
         ]
     );
- 
+
     $transaction = $gateway->purchase([
             'amount'        => '10.00',
             'currency'      => 'AUD',
@@ -61,9 +55,9 @@ The following gateways are provided by this package:
             'card'          => $card,
         ]
     );
- 
+
     $response = $transaction->send();
- 
+
     if ($response->isSuccessful()) {
         echo sprintf('Transaction %s was successful!', $response->getTransactionReference());
     } else {

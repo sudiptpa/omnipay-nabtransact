@@ -8,7 +8,7 @@ class UnionPayPurchaseResponseTest extends TestCase
 {
     public function testConstruct()
     {
-        $data = array('test' => '123');
+        $data = ['test' => '123'];
 
         $response = new UnionPayPurchaseResponse($this->getMockRequest(), $data, 'https://example.com/');
 

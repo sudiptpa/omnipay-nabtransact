@@ -21,11 +21,11 @@ class DirectPostGateway extends AbstractGateway
 
     public function getDefaultParameters()
     {
-        return array(
-            'merchantId'          => '',
+        return [
+            'merchantId' => '',
             'transactionPassword' => '',
-            'testMode'            => false,
-        );
+            'testMode' => false,
+        ];
     }
 
     /**

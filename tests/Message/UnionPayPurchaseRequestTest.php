@@ -10,15 +10,13 @@ class UnionPayPurchaseRequestTest extends TestCase
     {
         $this->request = new UnionPayPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
-        $this->request->initialize(
-            array(
-                'merchantId'          => 'XYZ0010',
-                'transactionPassword' => 'abcd1234',
-                'amount'              => '12.00',
-                'returnUrl'           => 'https://www.example.com/return',
-                'transactionId'       => 'GHJGG76756556',
-            )
-        );
+        $this->request->initialize([
+            'merchantId' => 'XYZ0010',
+            'transactionPassword' => 'abcd1234',
+            'amount' => '12.00',
+            'returnUrl' => 'https://www.example.com/return',
+            'transactionId' => 'GHJGG76756556',
+        ]);
     }
 
     public function testFingerprint()

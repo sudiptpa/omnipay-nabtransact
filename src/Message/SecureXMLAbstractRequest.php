@@ -30,7 +30,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     /**
      * @var array
      */
-    protected $requiredFields = array();
+    protected $requiredFields = [];
 
     /**
      * Set the messageID on the request.
@@ -71,16 +71,13 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         return $this->getParameter('messageId');
     }
 
-    /**
-     * @param $data
-     *
-     * @return mixed
-     */
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->post($this->getEndpoint(), null, $data->asXML())->send();
+        $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), [], $data->asXML());
 
-        return $this->response = new SecureXMLResponse($this, $httpResponse->xml());
+        $xml = new \SimpleXMLElement($httpResponse->getBody()->getContents());
+
+        return $this->response = new SecureXMLResponse($this, $xml);
     }
 
     /**
