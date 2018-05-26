@@ -11,9 +11,9 @@ class SecureXMLEchoTestRequestTest extends TestCase
         $this->request = new SecureXMLEchoTestRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
+            'merchantId'          => 'XYZ0010',
             'transactionPassword' => 'abcd1234',
-            'testMode' => true,
+            'testMode'            => true,
         ]);
     }
 
