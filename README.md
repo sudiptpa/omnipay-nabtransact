@@ -13,10 +13,10 @@ processing library for PHP. This package implements NAB Transact support for Omn
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/nabtransact` with Composer:
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `sudiptpa/omnipay-nabtransact` with Composer:
 
 ```
-composer require league/omnipay omnipay/nabtransact
+composer require league/omnipay sudiptpa/omnipay-nabtransact
 ```
 
 ## Basic Usage
