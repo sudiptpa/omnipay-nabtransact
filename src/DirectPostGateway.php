@@ -6,11 +6,12 @@ use Omnipay\Common\AbstractGateway;
 
 /**
  * NABTransact Direct Post Gateway.
+ * @link https://demo.transact.nab.com.au/nabtransact/downloadDocs.nab?nav=3-4
  */
 class DirectPostGateway extends AbstractGateway
 {
     /**
-     * @var mixed
+     * @var boolean
      */
     public $transparentRedirect = true;
 
@@ -22,14 +23,14 @@ class DirectPostGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'merchantId'          => '',
+            'merchantId' => '',
             'transactionPassword' => '',
-            'testMode'            => false,
+            'testMode' => false,
         ];
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getMerchantId()
     {
@@ -38,8 +39,6 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param $value
-     *
-     * @return mixed
      */
     public function setMerchantId($value)
     {
@@ -47,7 +46,7 @@ class DirectPostGateway extends AbstractGateway
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTransactionPassword()
     {
@@ -56,8 +55,6 @@ class DirectPostGateway extends AbstractGateway
 
     /**
      * @param $value
-     *
-     * @return mixed
      */
     public function setTransactionPassword($value)
     {
@@ -67,7 +64,7 @@ class DirectPostGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return mixed
+     * @return \Omnipay\NABTransact\Message\DirectPostAuthorizeRequest
      */
     public function authorize(array $parameters = [])
     {
@@ -77,7 +74,7 @@ class DirectPostGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return mixed
+     * @return \Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest
      */
     public function completeAuthorize(array $parameters = [])
     {
@@ -87,7 +84,7 @@ class DirectPostGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return mixed
+     * @return \Omnipay\NABTransact\Message\DirectPostPurchaseRequest
      */
     public function purchase(array $parameters = [])
     {
@@ -97,7 +94,7 @@ class DirectPostGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return mixed
+     * @return \Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest
      */
     public function completePurchase(array $parameters = [])
     {
