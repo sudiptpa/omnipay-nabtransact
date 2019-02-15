@@ -10,7 +10,7 @@ use Omnipay\Common\Message\AbstractResponse;
 class DirectPostCompletePurchaseResponse extends AbstractResponse
 {
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSuccessful()
     {

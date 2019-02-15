@@ -6,12 +6,13 @@ use Omnipay\Common\AbstractGateway;
 
 /**
  * NABTransact Direct Post Gateway.
+ *
  * @link https://demo.transact.nab.com.au/nabtransact/downloadDocs.nab?nav=3-4
  */
 class DirectPostGateway extends AbstractGateway
 {
     /**
-     * @var boolean
+     * @var bool
      */
     public $transparentRedirect = true;
 
@@ -23,9 +24,9 @@ class DirectPostGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'merchantId' => '',
+            'merchantId'          => '',
             'transactionPassword' => '',
-            'testMode' => false,
+            'testMode'            => false,
         ];
     }
 

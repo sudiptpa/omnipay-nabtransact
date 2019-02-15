@@ -33,7 +33,7 @@ class UnionPayPurchaseRequest extends DirectPostAbstractRequest
      */
     public function sendData($data)
     {
-        $redirectUrl = $this->getEndpoint() . '?' . http_build_query($data);
+        $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
 
         return $this->response = new UnionPayPurchaseResponse($this, $data, $redirectUrl);
     }
