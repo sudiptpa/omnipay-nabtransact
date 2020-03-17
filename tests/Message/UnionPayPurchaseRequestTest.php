@@ -39,8 +39,10 @@ class UnionPayPurchaseRequestTest extends TestCase
         $this->assertNull($response->getMessage());
         $this->assertNull($response->getCode());
 
-        $this->assertStringStartsWith('https://transact.nab.com.au/live/directpostv2/authorise',
-            $response->getRedirectUrl());
+        $this->assertStringStartsWith(
+            'https://transact.nab.com.au/live/directpostv2/authorise',
+            $response->getRedirectUrl()
+        );
         $this->assertSame('GET', $response->getRedirectMethod());
         $this->assertArrayHasKey('EPS_FINGERPRINT', $response->getData());
     }
