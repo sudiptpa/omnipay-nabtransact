@@ -65,6 +65,7 @@ class SecureXMLRiskPurchaseRequest extends SecureXMLAbstractRequest
         if ($email = $card->getEmail()) {
             $buyer->addChild('emailAddress', $email);
         }
+
         return $xml;
     }
 }

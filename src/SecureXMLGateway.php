@@ -38,6 +38,7 @@ class SecureXMLGateway extends AbstractGateway
     {
         return $this->setParameter('merchantId', $value);
     }
+
     /**
      * @return string
      */
@@ -100,6 +101,7 @@ class SecureXMLGateway extends AbstractGateway
         if ($this->getRiskManagement()) {
             return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLRiskPurchaseRequest', $parameters);
         }
+
         return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLPurchaseRequest', $parameters);
     }
 

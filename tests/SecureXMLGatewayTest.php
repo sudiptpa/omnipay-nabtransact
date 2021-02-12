@@ -57,7 +57,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
         $this->assertSame('25.00', $request->getAmount());
         $this->assertContains(
             '<BuyerInfo><ip>1.1.1.1</ip><firstName>Example</firstName><firstName>User</firstName><zipcode>12345</zipcode><town>Billstown</town><billingCountry>US</billingCountry></BuyerInfo>',
-            (string)$request->getData()->asXml()
+            (string) $request->getData()->asXml()
         );
     }
 
