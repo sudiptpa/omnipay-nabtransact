@@ -20,7 +20,7 @@ class SecureXMLRefundRequest extends SecureXMLAbstractRequest
     /**
      * @var array
      */
-    protected $requiredFields = array('amount', 'transactionId', 'transactionReference');
+    protected $requiredFields = ['amount', 'transactionId', 'transactionReference'];
 
     /**
      * @return mixed

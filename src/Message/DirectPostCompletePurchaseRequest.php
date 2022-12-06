@@ -30,14 +30,14 @@ class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
     {
         $fields = implode(
             '|',
-            array(
+            [
                 $data['merchant'],
                 $this->getTransactionPassword(),
                 $data['refid'],
                 $this->getAmount(),
                 $data['timestamp'],
                 $data['summarycode'],
-            )
+            ]
         );
 
         return sha1($fields);

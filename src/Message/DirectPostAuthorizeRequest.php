@@ -43,7 +43,7 @@ class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
     {
         $this->getCard()->validate();
 
-        $data = array();
+        $data = [];
 
         $data['EPS_CARDNUMBER'] = $this->getCard()->getNumber();
         $data['EPS_EXPIRYMONTH'] = $this->getCard()->getExpiryMonth();

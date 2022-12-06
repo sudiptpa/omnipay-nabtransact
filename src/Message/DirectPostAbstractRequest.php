@@ -24,14 +24,14 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
     {
         $hash = implode(
             '|',
-            array(
+            [
                 $data['EPS_MERCHANT'],
                 $this->getTransactionPassword(),
                 $data['EPS_TXNTYPE'],
                 $data['EPS_REFERENCEID'],
                 $data['EPS_AMOUNT'],
                 $data['EPS_TIMESTAMP'],
-            )
+            ]
         );
 
         return sha1($hash);
@@ -42,7 +42,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
      */
     public function getBaseData()
     {
-        $data = array();
+        $data = [];
 
         $data['EPS_MERCHANT'] = $this->getMerchantId();
         $data['EPS_TXNTYPE'] = $this->txnType;

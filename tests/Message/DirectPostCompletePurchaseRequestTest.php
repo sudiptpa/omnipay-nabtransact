@@ -14,35 +14,37 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
     public function testGenerateResponseFingerprint()
     {
         $this->request->initialize(
-            array(
+            [
                 'amount'              => '465.18',
                 'transactionPassword' => 'abcd1234',
-            )
+            ]
         );
 
-        $data = array(
+        $data = [
             'timestamp'   => '20161125123332',
             'merchant'    => 'XYZ0010',
             'refid'       => '222',
             'summarycode' => '2',
-        );
+        ];
 
-        $this->assertSame('79200d1df5dc3f914a90ce476fdef317d224629f',
-            $this->request->generateResponseFingerprint($data));
+        $this->assertSame(
+            '79200d1df5dc3f914a90ce476fdef317d224629f',
+            $this->request->generateResponseFingerprint($data)
+        );
     }
 
     public function testSuccess()
     {
         $this->request->initialize(
-            array(
+            [
                 'amount'              => '12.00',
                 'transactionPassword' => 'abcd1234',
                 'transactionId'       => 'ORDER-ZYX8',
-            )
+            ]
         );
 
         $this->getHttpRequest()->query->replace(
-            array(
+            [
                 'timestamp'            => '20161125130241',
                 'callback_status_code' => '-1',
                 'fingerprint'          => 'e30eb8381bc41201fbdf54a021d8228a3fbb6a6f',
@@ -55,7 +57,7 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
                 'refid'                => 'ORDER-ZYX8',
                 'pan'                  => '444433...111',
                 'summarycode'          => '1',
-            )
+            ]
         );
 
         $response = $this->request->send();
@@ -74,12 +76,12 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
 
     public function testFailure()
     {
-        $this->request->initialize(array(
+        $this->request->initialize([
             'amount'              => '465.18',
             'transactionPassword' => 'abcd1234',
-        ));
+        ]);
 
-        $this->getHttpRequest()->query->replace(array(
+        $this->getHttpRequest()->query->replace([
             'timestamp'            => '20161126051715',
             'callback_status_code' => '404',
             'fingerprint'          => 'cd75e2ef38cf63a2fa390024539acc7691eebc1d',
@@ -92,7 +94,7 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
             'refid'                => 'ORDER-ZYX8',
             'pan'                  => '444433...111',
             'summarycode'          => '2',
-        ));
+        ]);
 
         $response = $this->request->send();
 
