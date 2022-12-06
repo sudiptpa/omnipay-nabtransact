@@ -11,18 +11,18 @@ class DirectPostAuthorizeRequestTest extends TestCase
         $this->request = new DirectPostAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize(
-            array(
+            [
                 'merchantId'          => 'XYZ0010',
                 'transactionPassword' => 'abcd1234',
                 'amount'              => '12.00',
                 'returnUrl'           => 'https://www.abc.com/return',
-                'card'                => array(
+                'card'                => [
                     'number'      => '4444333322221111',
                     'expiryMonth' => '6',
                     'expiryYear'  => '2030',
                     'cvv'         => '123',
-                ),
-            )
+                ],
+            ]
         );
     }
 

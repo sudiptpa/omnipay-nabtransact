@@ -80,8 +80,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getCode()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->responseCode
-        : (string) $this->data->Status->statusCode;
+            ? (string) $this->data->Payment->TxnList->Txn->responseCode
+            : (string) $this->data->Status->statusCode;
     }
 
     /**
@@ -92,8 +92,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getMessage()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->responseText
-        : (string) $this->data->Status->statusDescription;
+            ? (string) $this->data->Payment->TxnList->Txn->responseText
+            : (string) $this->data->Status->statusDescription;
     }
 
     /**
@@ -112,8 +112,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getTransactionReference()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->purchaseOrderNo
-        : null;
+            ? (string) $this->data->Payment->TxnList->Txn->purchaseOrderNo
+            : null;
     }
 
     /**
@@ -122,8 +122,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getTransactionId()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->txnID
-        : null;
+            ? (string) $this->data->Payment->TxnList->Txn->txnID
+            : null;
     }
 
     /**
@@ -134,8 +134,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getTransactionAmount()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->amount
-        : null;
+            ? (string) $this->data->Payment->TxnList->Txn->amount
+            : null;
     }
 
     /**
@@ -146,8 +146,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getTransactionCurrency()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->currency
-        : null;
+            ? (string) $this->data->Payment->TxnList->Txn->currency
+            : null;
     }
 
     /**
@@ -158,8 +158,8 @@ class SecureXMLResponse extends AbstractResponse
     public function getTransactionSource()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->txnSource
-        : null;
+            ? (string) $this->data->Payment->TxnList->Txn->txnSource
+            : null;
     }
 
     /**
@@ -170,7 +170,7 @@ class SecureXMLResponse extends AbstractResponse
     public function getSettlementDate()
     {
         return $this->hasTransaction()
-        ? (string) $this->data->Payment->TxnList->Txn->settlementDate
-        : null;
+            ? (string) $this->data->Payment->TxnList->Txn->settlementDate
+            : null;
     }
 }

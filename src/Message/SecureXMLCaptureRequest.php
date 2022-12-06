@@ -13,19 +13,10 @@ namespace Omnipay\NABTransact\Message;
  */
 class SecureXMLCaptureRequest extends SecureXMLAbstractRequest
 {
-    /**
-     * @var int
-     */
     protected $txnType = 11;
 
-    /**
-     * @var array
-     */
-    protected $requiredFields = array('amount', 'transactionId', 'preauthId');
+    protected $requiredFields = ['amount', 'transactionId', 'preauthId'];
 
-    /**
-     * @return mixed
-     */
     public function getData()
     {
         $xml = $this->getBasePaymentXML();
@@ -37,8 +28,6 @@ class SecureXMLCaptureRequest extends SecureXMLAbstractRequest
 
     /**
      * Set the preauthId that was returned as part of the original authorize request.
-     *
-     * @return mixed
      */
     public function setPreauthId($value)
     {

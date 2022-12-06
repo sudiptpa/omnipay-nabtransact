@@ -7,47 +7,21 @@ namespace Omnipay\NABTransact\Message;
  */
 abstract class SecureXMLAbstractRequest extends AbstractRequest
 {
-    /**
-     * @var string
-     */
     public $testEndpoint = 'https://demo.transact.nab.com.au/xmlapi/payment';
 
-    /**
-     * @var string
-     */
     public $liveEndpoint = 'https://transact.nab.com.au/live/xmlapi/payment';
 
-    /**
-     * @var string
-     */
     protected $requestType = 'Payment';
 
-    /**
-     * @var mixed
-     */
     protected $txnType;
 
-    /**
-     * @var array
-     */
-    protected $requiredFields = array();
+     protected $requiredFields = [];
 
-    /**
-     * Set the messageID on the request.
-     *
-     * This is returned intact on any response so you could add a local
-     * database ID here to ease in matching data later.
-     */
     public function setMessageId($value)
     {
         return $this->setParameter('messageId', $value);
     }
 
-    /**
-     * Generates a SecureXML messageId.
-     *
-     * @return string
-     */
     public function generateMessageId()
     {
         $hash = hash('sha256', microtime());
@@ -55,11 +29,6 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         return substr($hash, 0, 30);
     }
 
-    /**
-     * Get the messageID or generated one based on timestamp.
-     *
-     * @return string
-     */
     public function getMessageId()
     {
         $messageId = $this->getParameter('messageId');
@@ -71,11 +40,6 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         return $this->getParameter('messageId');
     }
 
-    /**
-     * @param $data
-     *
-     * @return mixed
-     */
     public function sendData($data)
     {
         $httpResponse = $this->httpClient->post($this->getEndpoint(), null, $data->asXML())->send();

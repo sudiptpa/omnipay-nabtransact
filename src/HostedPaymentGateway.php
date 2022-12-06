@@ -9,7 +9,7 @@ use Omnipay\Common\AbstractGateway;
  */
 class HostedPaymentGateway extends AbstractGateway
 {
-    public function completePurchase(array $parameters = array())
+    public function completePurchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\HostedPaymentCompletePurchaseRequest', $parameters);
     }
@@ -24,7 +24,7 @@ class HostedPaymentGateway extends AbstractGateway
         return 'NAB Hosted Payment';
     }
 
-    public function purchase(array $parameters = array())
+    public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\HostedPaymentPurchaseRequest', $parameters);
     }

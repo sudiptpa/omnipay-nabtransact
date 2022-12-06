@@ -12,14 +12,8 @@ namespace Omnipay\NABTransact\Message;
  */
 class SecureXMLEchoTestRequest extends SecureXMLAbstractRequest
 {
-    /**
-     * @var string
-     */
     protected $requestType = 'Echo';
 
-    /**
-     * @return mixed
-     */
     public function getData()
     {
         return $this->getBaseXML();

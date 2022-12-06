@@ -12,19 +12,10 @@ namespace Omnipay\NABTransact\Message;
  */
 class SecureXMLRefundRequest extends SecureXMLAbstractRequest
 {
-    /**
-     * @var int
-     */
     protected $txnType = 4;
 
-    /**
-     * @var array
-     */
-    protected $requiredFields = array('amount', 'transactionId', 'transactionReference');
+    protected $requiredFields = ['amount', 'transactionId', 'transactionReference'];
 
-    /**
-     * @return mixed
-     */
     public function getData()
     {
         $xml = $this->getBasePaymentXML();

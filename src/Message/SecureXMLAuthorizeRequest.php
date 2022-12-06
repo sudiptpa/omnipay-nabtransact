@@ -12,19 +12,10 @@ namespace Omnipay\NABTransact\Message;
  */
 class SecureXMLAuthorizeRequest extends SecureXMLAbstractRequest
 {
-    /**
-     * @var int
-     */
     protected $txnType = 10;
 
-    /**
-     * @var array
-     */
-    protected $requiredFields = array('amount', 'card', 'transactionId');
+    protected $requiredFields = ['amount', 'card', 'transactionId'];
 
-    /**
-     * @return mixed
-     */
     public function getData()
     {
         return $this->getBasePaymentXMLWithCard();
