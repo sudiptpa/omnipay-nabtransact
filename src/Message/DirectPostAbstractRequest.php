@@ -24,7 +24,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
             $data['EPS_TIMESTAMP'],
         ];
 
-        if ($this->hasEMV3DSEnabled()) {
+        if ($this->getHasEMV3DSEnabled()) {
             $hashable = array_merge(
                 $hashable,
                 [$data['EPS_ORDERID']]
@@ -79,7 +79,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
             $data['EPS_EMAILADDRESS'] = $emailAddress;
         }
 
-        if ($this->hasEMV3DSEnabled()) {
+        if ($this->getHasEMV3DSEnabled()) {
             $data['EPS_ORDERID'] = $this->getTransactionReference();
 
             $data['EPS_TXNTYPE'] = TransactionType::PAYMENT_3DS_EMV3DS;
