@@ -9,12 +9,9 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 class DirectPostCompletePurchaseResponse extends AbstractResponse
 {
-    /**
-     * @return mixed
-     */
     public function isSuccessful()
     {
-        return $this->summaryCode() && in_array($this->getCode(), array('00', '08', '11'));
+        return $this->summaryCode() && in_array($this->getCode(), ['00', '08', '11']);
     }
 
     public function summaryCode()
@@ -22,9 +19,6 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
         return isset($this->data['summarycode']) && (int) $this->data['summarycode'] == 1;
     }
 
-    /**
-     * @return mixed
-     */
     public function getMessage()
     {
         if (isset($this->data['restext'])) {
@@ -32,9 +26,6 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
         }
     }
 
-    /**
-     * @return mixed
-     */
     public function getCode()
     {
         if (isset($this->data['rescode'])) {
@@ -42,9 +33,6 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
         }
     }
 
-    /**
-     * @return mixed
-     */
     public function getTransactionReference()
     {
         if (isset($this->data['txnid'])) {

@@ -11,9 +11,6 @@ use Omnipay\Common\Message\RequestInterface;
  */
 class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    /**
-     * @var mixed
-     */
     protected $redirectUrl;
 
     /**
@@ -38,9 +35,6 @@ class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectRe
         return true;
     }
 
-    /**
-     * @return mixed
-     */
     public function getRedirectUrl()
     {
         return $this->redirectUrl;
@@ -51,9 +45,6 @@ class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectRe
         return 'POST';
     }
 
-    /**
-     * @return mixed
-     */
     public function getRedirectData()
     {
         return $this->getData();

@@ -7,8 +7,5 @@ namespace Omnipay\NABTransact\Message;
  */
 class DirectPostPurchaseRequest extends DirectPostAuthorizeRequest
 {
-    /**
-     * @var string
-     */
     public $txnType = '0';
 }

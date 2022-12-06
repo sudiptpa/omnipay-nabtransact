@@ -7,14 +7,8 @@ namespace Omnipay\NABTransact\Message;
  */
 class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
 {
-    /**
-     * @var string
-     */
     public $txnType = '1';
 
-    /**
-     * @return mixed
-     */
     public function getData()
     {
         $this->validate('amount', 'returnUrl', 'card');
@@ -26,24 +20,16 @@ class DirectPostAuthorizeRequest extends DirectPostAbstractRequest
         return $data;
     }
 
-    /**
-     * @param $data
-     *
-     * @return mixed
-     */
     public function sendData($data)
     {
         return $this->response = new DirectPostAuthorizeResponse($this, $data, $this->getEndpoint());
     }
 
-    /**
-     * @return mixed
-     */
     protected function getCardData()
     {
         $this->getCard()->validate();
 
-        $data = array();
+        $data = [];
 
         $data['EPS_CARDNUMBER'] = $this->getCard()->getNumber();
         $data['EPS_EXPIRYMONTH'] = $this->getCard()->getExpiryMonth();

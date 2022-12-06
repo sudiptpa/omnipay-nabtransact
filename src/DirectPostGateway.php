@@ -9,11 +9,6 @@ use Omnipay\Common\AbstractGateway;
  */
 class DirectPostGateway extends AbstractGateway
 {
-    /**
-     * @var mixed
-     */
-    public $transparentRedirect = true;
-
     public function getName()
     {
         return 'NABTransact Direct Post';
@@ -21,85 +16,59 @@ class DirectPostGateway extends AbstractGateway
 
     public function getDefaultParameters()
     {
-        return array(
-            'merchantId'          => '',
+        return [
+            'merchantId' => '',
             'transactionPassword' => '',
-            'testMode'            => false,
-        );
+            'testMode' => false,
+        ];
     }
 
-    /**
-     * @return mixed
-     */
     public function getMerchantId()
     {
         return $this->getParameter('merchantId');
     }
 
-    /**
-     * @param $value
-     *
-     * @return mixed
-     */
     public function setMerchantId($value)
     {
         return $this->setParameter('merchantId', $value);
     }
 
-    /**
-     * @return mixed
-     */
     public function getTransactionPassword()
     {
         return $this->getParameter('transactionPassword');
     }
 
-    /**
-     * @param $value
-     *
-     * @return mixed
-     */
     public function setTransactionPassword($value)
     {
         return $this->setParameter('transactionPassword', $value);
     }
 
-    /**
-     * @param array $parameters
-     *
-     * @return mixed
-     */
-    public function authorize(array $parameters = array())
+    public function getHasEMV3DSEnabled()
+    {
+        return $this->getParameter('hasEMV3DSEnabled');
+    }
+
+    public function setHasEMV3DSEnabled($value)
+    {
+        return $this->setParameter('hasEMV3DSEnabled', $value);
+    }
+
+    public function authorize(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostAuthorizeRequest', $parameters);
     }
 
-    /**
-     * @param array $parameters
-     *
-     * @return mixed
-     */
-    public function completeAuthorize(array $parameters = array())
+    public function completeAuthorize(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $parameters);
     }
 
-    /**
-     * @param array $parameters
-     *
-     * @return mixed
-     */
-    public function purchase(array $parameters = array())
+    public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostPurchaseRequest', $parameters);
     }
 
-    /**
-     * @param array $parameters
-     *
-     * @return mixed
-     */
-    public function completePurchase(array $parameters = array())
+    public function completePurchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $parameters);
     }
