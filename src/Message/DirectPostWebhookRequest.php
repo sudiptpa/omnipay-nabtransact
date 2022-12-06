@@ -32,7 +32,7 @@ class DirectPostWebhookRequest extends DirectPostAbstractRequest
         $data = $this->data;
 
         if ($fingerprint !== $this->generateResponseFingerprint($data)) {
-            $data['restext'] = $data['restext'] . ', Invalid fingerprint.';
+            $data['restext'] = $data['restext'].', Invalid fingerprint.';
             $data['summarycode'] = 3;
         }
 
@@ -44,5 +44,7 @@ class DirectPostWebhookRequest extends DirectPostAbstractRequest
         return $this->data;
     }
 
-    public function sendData($data){}
+    public function sendData($data)
+    {
+    }
 }

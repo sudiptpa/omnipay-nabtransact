@@ -35,7 +35,8 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
 
         if ($this->getHasEMV3DSEnabled()) {
             $hashable = array_merge(
-                $hashable, [$data['EPS_ORDERID']]
+                $hashable,
+                [$data['EPS_ORDERID']]
             );
         }
 
