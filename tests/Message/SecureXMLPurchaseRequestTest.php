@@ -18,11 +18,11 @@ class SecureXMLPurchaseRequestTest extends TestCase
                 'amount'              => '12.00',
                 'transactionId'       => '1234',
                 'card'                => [
-                    'number'         => '4444333322221111',
-                    'expiryMonth'    => '10',
-                    'expiryYear'     => '2030',
-                    'cvv'            => '123',
-                    'cardHolderName' => 'Sujip Thapa',
+                    'number'          => '4444333322221111',
+                    'expiryMonth'     => '10',
+                    'expiryYear'      => '2030',
+                    'cvv'             => '123',
+                    'cardHolderName'  => 'Sujip Thapa',
                     'billingPostcode' => '1234',
                 ],
             ]
