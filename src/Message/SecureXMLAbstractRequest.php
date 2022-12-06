@@ -15,7 +15,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
 
     protected $txnType;
 
-     protected $requiredFields = [];
+    protected $requiredFields = [];
 
     public function setMessageId($value)
     {
