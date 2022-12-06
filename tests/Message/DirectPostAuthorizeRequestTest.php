@@ -21,6 +21,7 @@ class DirectPostAuthorizeRequestTest extends TestCase
                     'expiryMonth' => '6',
                     'expiryYear'  => '2030',
                     'cvv'         => '123',
+                    'billingPostcode' => '1234',
                 ],
             ]
         );

@@ -23,6 +23,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
                     'expiryYear'     => '2030',
                     'cvv'            => '123',
                     'cardHolderName' => 'Sujip Thapa',
+                    'billingPostcode' => '1234',
                 ],
             ]
         );

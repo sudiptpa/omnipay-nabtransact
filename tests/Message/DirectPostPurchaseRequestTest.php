@@ -19,8 +19,9 @@ class DirectPostPurchaseRequestTest extends TestCase
                 'card'                => [
                     'number'      => '4444333322221111',
                     'expiryMonth' => '06',
-                    'expiryYear'  => '2020',
+                    'expiryYear'  => '2039',
                     'cvv'         => '123',
+                    'billingPostcode' => '1234',
                 ],
             ]
         );
