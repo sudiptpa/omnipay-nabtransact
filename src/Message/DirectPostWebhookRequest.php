@@ -22,9 +22,9 @@ class DirectPostWebhookRequest extends DirectPostAbstractRequest
             $data['summarycode'],
         ];
 
-        $fields = implode('|', $hashable);
+        $hash = implode('|', $hashable);
 
-        return sha1($fields);
+        return hash_hmac('sha256', $hash, $data['txn_password']);
     }
 
     public function vefiyFingerPrint($fingerprint)

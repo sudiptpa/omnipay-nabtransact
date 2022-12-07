@@ -31,9 +31,9 @@ class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
             $data['summarycode'],
         ];
 
-        $fields = implode('|', $hashable);
+        $hash = implode('|', $hashable);
 
-        return sha1($fields);
+        return hash_hmac('sha256', $hash, $this->getTransactionPassword());
     }
 
     public function sendData($data)

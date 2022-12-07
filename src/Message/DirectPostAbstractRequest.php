@@ -33,7 +33,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
 
         $hash = implode('|', $hashable);
 
-        return sha1($hash);
+        return hash_hmac('sha256', $hash, $this->getTransactionPassword());
     }
 
     public function getBaseData()
