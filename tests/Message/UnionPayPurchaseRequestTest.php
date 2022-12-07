@@ -34,7 +34,7 @@ class UnionPayPurchaseRequestTest extends TestCase
         $data['EPS_TIMESTAMP'] = '20161125123332';
 
         $this->assertSame(
-            '36e686feef0ec7a53d5b6289707bc47e4bb83c95',
+            'a44c4e30e838b34bfbcbe89495f50c1527c1c2c4229960b8d9de159fb5a99f20',
             $this->request->generateFingerprint($data)
         );
     }

@@ -2,7 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\NABTransact\Exception\InvalidFingerprintException;
 
 /**
  * NABTransact Direct Post Complete Purchase Request.
@@ -13,8 +13,12 @@ class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
     {
         $data = $this->httpRequest->query->all();
 
-        if ($this->generateResponseFingerprint($data) !== $this->httpRequest->query->get('fingerprint')) {
-            throw new InvalidRequestException('Invalid fingerprint');
+        $received_fingerprint = $this->httpRequest->query->get('fingerprint');
+
+        $generated_fingerprint = $this->generateResponseFingerprint($data);
+
+        if ($generated_fingerprint !== $received_fingerprint) {
+            throw new InvalidFingerprintException('Invalid fingerprint', $data);
         }
 
         return $data;
