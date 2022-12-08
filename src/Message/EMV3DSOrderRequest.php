@@ -36,7 +36,7 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
             'headers' => [
                 'Accept'        => '*/*',
                 'Content-Type'  => 'application/json; charset=UTF-8',
-                'Authorization' => "Basic {$authorizationHeader}"
+                'Authorization' => "Basic {$authorizationHeader}",
             ],
             'body' => json_encode($data),
         ];
