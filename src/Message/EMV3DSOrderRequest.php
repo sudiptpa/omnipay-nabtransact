@@ -13,7 +13,7 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
 
     public function getData()
     {
-        $this->validate('amount', 'currency', 'clientIp', 'merchantOrderReference');
+        $this->validate('amount', 'currency', 'clientIp', 'transactionReference');
 
         return [
             'amount'                 => floor($this->getAmount() * 100),
