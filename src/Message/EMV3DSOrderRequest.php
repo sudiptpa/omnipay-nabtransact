@@ -16,13 +16,13 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
         $this->validate('amount', 'currency', 'clientIp', 'transactionReference');
 
         return [
-            'amount' => floor($this->getAmount() * 100),
-            'currency' => $this->getCurrency(),
-            'ip' => $this->getClientIp(),
-            'merchantId' => $this->getMerchantId(),
+            'amount'                 => floor($this->getAmount() * 100),
+            'currency'               => $this->getCurrency(),
+            'ip'                     => $this->getClientIp(),
+            'merchantId'             => $this->getMerchantId(),
             'merchantOrderReference' => $this->getTransactionReference(),
-            'orderType' => 'PAYMENT',
-            'intents' => [
+            'orderType'              => 'PAYMENT',
+            'intents'                => [
                 'THREED_SECURE',
             ],
         ];
@@ -37,8 +37,8 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
 
         $params = [
             'headers' => [
-                'Accept' => '*/*',
-                'Content-Type' => 'application/json; charset=UTF-8',
+                'Accept'        => '*/*',
+                'Content-Type'  => 'application/json; charset=UTF-8',
                 'Authorization' => "Basic {$authorizationHeader}",
             ],
             'body' => json_encode($data),
