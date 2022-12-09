@@ -28,6 +28,9 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
         ];
     }
 
+    /**
+     * @param $data
+     */
     public function sendData($data)
     {
         $authorizationHeader = base64_encode("{$this->getMerchantId()}:{$this->getTransactionPassword()}");
@@ -43,6 +46,10 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
 
         $response = $this->httpClient->post($this->getEndpoint(), $params)->send();
 
-        return $this->response = new EMV3DSOrderResponse($this, $response->json());
+        $json = $response->json();
+
+        $json['http_status_code'] = $response->getStatusCode();
+
+        return $this->response = new EMV3DSOrderResponse($this, $json);
     }
 }
