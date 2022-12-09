@@ -28,9 +28,6 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
         ];
     }
 
-    /**
-     * @param $data
-     */
     public function sendData($data)
     {
         $authorizationHeader = base64_encode("{$this->getMerchantId()}:{$this->getTransactionPassword()}");
