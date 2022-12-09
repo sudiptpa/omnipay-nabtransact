@@ -19,6 +19,17 @@ class EMV3DSOrderResponse extends AbstractResponse
         parent::__construct($request, $data);
     }
 
+    public function isSuccessful()
+    {
+        $statusCode = $this->getResponseData('http_status_code');
+
+        if (is_null($statusCode)) {
+            return false;
+        }
+
+        return $statusCode >= 200 && $statusCode <= 399;
+    }
+
     public function getResponseData($key)
     {
         $data = $this->data;
