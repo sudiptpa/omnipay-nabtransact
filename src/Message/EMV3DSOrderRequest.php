@@ -32,16 +32,14 @@ class EMV3DSOrderRequest extends DirectPostAuthorizeRequest
     {
         $authorizationHeader = base64_encode("{$this->getMerchantId()}:{$this->getTransactionPassword()}");
 
-        $params = [
-            'headers' => [
-                'Accept'        => '*/*',
-                'Content-Type'  => 'application/json; charset=UTF-8',
-                'Authorization' => "Basic {$authorizationHeader}",
-            ],
-            'body' => json_encode($data),
+        $headers = [
+            'Content-Type' => 'application/json; charset=UTF-8',
+            'Authorization' => "Basic {$authorizationHeader}",
         ];
 
-        $response = $this->httpClient->post($this->getEndpoint(), $params)->send();
+        $params = json_encode($data);
+
+        $response = $this->httpClient->post($this->getEndpoint(), $headers, $params)->send();
 
         $json = $response->json();
 
