@@ -18,7 +18,7 @@ class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectRe
 
     /**
      * @param RequestInterface $request
-     * @param array $data
+     * @param array            $data
      * @param $redirectUrl
      */
     public function __construct(RequestInterface $request, $data, $redirectUrl)
@@ -71,7 +71,7 @@ class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectRe
                     '<input type="hidden" name="%1$s" value="%2$s" />',
                     htmlentities($key, ENT_QUOTES, 'UTF-8', false),
                     htmlentities($value, ENT_QUOTES, 'UTF-8', false)
-                ) . "\n";
+                )."\n";
             }
 
             $style = '<style>
@@ -143,6 +143,6 @@ class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectRe
             return HttpResponse::create($output);
         }
 
-        throw new RuntimeException('Invalid redirect method "' . $this->getRedirectMethod() . '".');
+        throw new RuntimeException('Invalid redirect method "'.$this->getRedirectMethod().'".');
     }
 }
