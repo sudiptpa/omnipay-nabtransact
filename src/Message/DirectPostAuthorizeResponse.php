@@ -120,13 +120,13 @@ class DirectPostAuthorizeResponse extends AbstractResponse implements RedirectRe
                                 HEAD_STYLE
                             </head>
                             <body onload="document.forms[0].submit();">
-                                <form action="%1$s" method="post">
-                                    <p>Redirecting to payment page...</p>
-                                    <div>
-                                        %2$s
-                                    </div>
-                                </form>
                                 <div class="container">
+                                    <form action="%1$s" method="post">
+                                        <p>Redirecting to payment page...</p>
+                                        <div>
+                                            %2$s
+                                        </div>
+                                    </form>
                                     <div class="loader"></div>
                                     <h4>Processing your payment ...</h4>
                                 </div>
