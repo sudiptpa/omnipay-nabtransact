@@ -59,6 +59,14 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
 
         $card = $this->getCard();
 
+        if ($card->getBillingFirstName()) {
+            $data['EPS_FIRSTNAME'] = $card->getBillingFirstName();
+        }
+
+        if ($card->getBillingLastName()) {
+            $data['EPS_LASTNAME'] = $card->getBillingLastName();
+        }
+
         if ($billingPostcode = $card->getBillingPostcode()) {
             $data['EPS_ZIPCODE'] = $billingPostcode;
         }
