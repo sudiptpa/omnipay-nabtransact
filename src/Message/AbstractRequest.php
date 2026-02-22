@@ -2,48 +2,32 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\NABTransact\Transport\TransportInterface;
+
 /**
  * NABTransact Abstract Request.
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    /**
-     * @var string
-     */
     public $testEndpoint;
 
-    /**
-     * @var string
-     */
     public $liveEndpoint;
 
-    /**
-     * @return string
-     */
     public function getMerchantId()
     {
         return $this->getParameter('merchantId');
     }
 
-    /**
-     * @param $value
-     */
     public function setMerchantId($value)
     {
         return $this->setParameter('merchantId', $value);
     }
 
-    /**
-     * @return string
-     */
     public function getTransactionPassword()
     {
         return $this->getParameter('transactionPassword');
     }
 
-    /**
-     * @param $value
-     */
     public function setTransactionPassword($value)
     {
         return $this->setParameter('transactionPassword', $value);
@@ -54,17 +38,58 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->getParameter('hasEMV3DSEnabled');
     }
 
-    /**
-     * @param $value
-     */
     public function setHasEMV3DSEnabled($value)
     {
         return $this->setParameter('hasEMV3DSEnabled', $value);
     }
 
+    public function getHasRiskManagementEnabled()
+    {
+        return $this->getParameter('hasRiskManagementEnabled');
+    }
+
+    public function setHasRiskManagementEnabled($value)
+    {
+        return $this->setParameter('hasRiskManagementEnabled', $value);
+    }
+
     /**
-     * @return string
+     * @param TransportInterface $transport
+     *
+     * @return $this
      */
+    public function setTransport(TransportInterface $transport)
+    {
+        return $this->setParameter('transport', $transport);
+    }
+
+    /**
+     * @return TransportInterface|null
+     */
+    public function getTransport()
+    {
+        return $this->getParameter('transport');
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeoutSeconds()
+    {
+        $timeout = $this->getParameter('timeoutSeconds');
+
+        if ($timeout === null) {
+            return 60;
+        }
+
+        return max(1, (int) $timeout);
+    }
+
+    public function setTimeoutSeconds($value)
+    {
+        return $this->setParameter('timeoutSeconds', (int) $value);
+    }
+
     public function getEndpoint()
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;

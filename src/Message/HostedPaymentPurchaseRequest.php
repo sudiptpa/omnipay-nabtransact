@@ -10,12 +10,12 @@ class HostedPaymentPurchaseRequest extends AbstractRequest
     /**
      * @var string
      */
-    public $liveEndpoint = 'https://transact.nab.com.au/test/hpp/payment';
+    public $liveEndpoint = 'https://transact.nab.com.au/live/hpp/payment';
 
     /**
      * @var string
      */
-    public $testEndpoint = 'https://transact.nab.com.au/live/hpp/payment';
+    public $testEndpoint = 'https://transact.nab.com.au/test/hpp/payment';
 
     /**
      * @return array

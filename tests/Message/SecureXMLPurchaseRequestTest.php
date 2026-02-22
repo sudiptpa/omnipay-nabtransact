@@ -2,12 +2,13 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class SecureXMLPurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new SecureXMLPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -28,12 +29,12 @@ class SecureXMLPurchaseRequestTest extends TestCase
 
     public function testSendSuccess()
     {
-        $this->setMockHttpResponse('SecureXMLPurchaseRequestSendSuccess.txt');
+        $this->queueFixtureResponse('SecureXMLPurchaseRequestSendSuccess.txt');
 
         $response = $this->request->send();
         $data = $response->getData();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());

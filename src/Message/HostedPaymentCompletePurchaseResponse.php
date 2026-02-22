@@ -12,7 +12,7 @@ class HostedPaymentCompletePurchaseResponse extends AbstractResponse
 {
     /**
      * @param RequestInterface $request
-     * @param $data
+     * @param                  $data
      */
     public function __construct(RequestInterface $request, $data)
     {
@@ -21,5 +21,45 @@ class HostedPaymentCompletePurchaseResponse extends AbstractResponse
         }
 
         parent::__construct($request, $data);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuccessful()
+    {
+        return $this->summaryCode() && in_array($this->getCode(), ['00', '08', '11'], true);
+    }
+
+    /**
+     * @return bool
+     */
+    public function summaryCode()
+    {
+        return isset($this->data['summarycode']) && (int) $this->data['summarycode'] === 1;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage()
+    {
+        return isset($this->data['restext']) ? $this->data['restext'] : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCode()
+    {
+        return isset($this->data['rescode']) ? $this->data['rescode'] : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransactionReference()
+    {
+        return isset($this->data['txnid']) ? $this->data['txnid'] : null;
     }
 }

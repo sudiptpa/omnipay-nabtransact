@@ -2,6 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\Common\CreditCard;
 use Omnipay\NABTransact\Enums\TransactionType;
 
 /**
@@ -18,6 +19,35 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
      * @var string
      */
     public $liveEndpoint = 'https://transact.nab.com.au/live/directpostv2/authorise';
+
+    /**
+     * @var string|int
+     */
+    protected $txnType = '0';
+
+    /**
+     * @return string
+     */
+    protected function resolveTxnType()
+    {
+        $isPreauth = (string) $this->txnType === (string) TransactionType::NORMAL_PREAUTH;
+        $risk = (bool) $this->getHasRiskManagementEnabled();
+        $emv = (bool) $this->getHasEMV3DSEnabled();
+
+        if ($risk && $emv) {
+            return (string) ($isPreauth ? TransactionType::PREAUTH_RISK_MANAGEMENT_3DS_EMV3DS : TransactionType::PAYMENT_RISK_MANAGEMENT_3DS_EMV3DS);
+        }
+
+        if ($risk) {
+            return (string) ($isPreauth ? TransactionType::PREAUTH_RISK_MANAGEMENT : TransactionType::PAYMENT_RISK_MANAGEMENT);
+        }
+
+        if ($emv) {
+            return (string) ($isPreauth ? TransactionType::PREAUTH_3DS_EMV3DS : TransactionType::PAYMENT_3DS_EMV3DS);
+        }
+
+        return (string) $this->txnType;
+    }
 
     /**
      * @param array $data
@@ -53,7 +83,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
         $data = [];
 
         $data['EPS_MERCHANT'] = $this->getMerchantId();
-        $data['EPS_TXNTYPE'] = $this->txnType;
+        $data['EPS_TXNTYPE'] = $this->resolveTxnType();
         $data['EPS_REFERENCEID'] = $this->getTransactionId();
         $data['EPS_AMOUNT'] = $this->getAmount();
         $data['EPS_TIMESTAMP'] = gmdate('YmdHis');
@@ -69,9 +99,17 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
             $data['EPS_CURRENCY'] = $currency;
         }
 
-        $card = $this->getCard();
+        $card = $this->getParameter('card');
 
-        if ($card) { //UnionPay doesn't have card option
+        if ($card instanceof CreditCard) {
+            if ($billingFirstName = $card->getBillingFirstName()) {
+                $data['EPS_FIRSTNAME'] = $billingFirstName;
+            }
+
+            if ($billingLastName = $card->getBillingLastName()) {
+                $data['EPS_LASTNAME'] = $billingLastName;
+            }
+
             if ($billingPostcode = $card->getBillingPostcode()) {
                 $data['EPS_ZIPCODE'] = $billingPostcode;
             }
@@ -95,8 +133,6 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
 
         if ($this->getHasEMV3DSEnabled()) {
             $data['EPS_ORDERID'] = $this->getTransactionReference();
-
-            $data['EPS_TXNTYPE'] = TransactionType::PAYMENT_3DS_EMV3DS;
         }
 
         $data['EPS_FINGERPRINT'] = $this->generateFingerprint($data);

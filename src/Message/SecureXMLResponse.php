@@ -55,7 +55,7 @@ class SecureXMLResponse extends AbstractResponse
     /**
      * Gateway approved string if available.
      *
-     * @return string
+     * @return bool
      */
     public function getApproved()
     {
@@ -107,7 +107,7 @@ class SecureXMLResponse extends AbstractResponse
     }
 
     /**
-     * @return string Unique NABTransact bank transaction reference.
+     * @return string|null Unique NABTransact bank transaction reference.
      */
     public function getTransactionReference()
     {
@@ -117,7 +117,7 @@ class SecureXMLResponse extends AbstractResponse
     }
 
     /**
-     * @return string Unique NABTransact bank transaction reference.
+     * @return string|null Unique NABTransact bank transaction reference.
      */
     public function getTransactionId()
     {
@@ -129,7 +129,7 @@ class SecureXMLResponse extends AbstractResponse
     /**
      * NABTransact transaction amount.
      *
-     * @return string
+     * @return string|null
      */
     public function getTransactionAmount()
     {
@@ -141,7 +141,7 @@ class SecureXMLResponse extends AbstractResponse
     /**
      * NABTransact transaction currency.
      *
-     * @return string
+     * @return string|null
      */
     public function getTransactionCurrency()
     {

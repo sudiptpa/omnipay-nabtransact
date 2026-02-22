@@ -2,27 +2,22 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class UnionPayCompletePurchaseRequestTest extends TestCase
 {
-    public function setUp()
-    {
-        $this->request = new UnionPayCompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-    }
-
     public function testUnionPayCompletePurchaseSuccess()
     {
-        $data = [];
-
-        $data['restext'] = 'Approved';
-        $data['rescode'] = '00';
-        $data['summarycode'] = '1';
-        $data['txnid'] = '12345';
+        $data = [
+            'restext'     => 'Approved',
+            'rescode'     => '00',
+            'summarycode' => '1',
+            'txnid'       => '12345',
+        ];
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('12345', $response->getTransactionReference());
@@ -33,16 +28,16 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
 
     public function testUnionPayCompletePurchaseFailure()
     {
-        $data = [];
-
-        $data['restext'] = 'Error';
-        $data['txnid'] = '12345';
-        $data['summarycode'] = '3';
-        $data['rescode'] = '06';
+        $data = [
+            'restext'     => 'Error',
+            'txnid'       => '12345',
+            'summarycode' => '3',
+            'rescode'     => '06',
+        ];
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('12345', $response->getTransactionReference());
