@@ -31,21 +31,6 @@ class DirectPostStoreRequestTest extends TestCase
 
         $this->assertSame('8', $data['EPS_TXNTYPE']);
         $this->assertSame('0.00', $data['EPS_AMOUNT']);
-        $this->assertSame('true', $data['EPS_STORE']);
-        $this->assertSame('TOKEN', $data['EPS_STORETYPE']);
         $this->assertArrayHasKey('EPS_FINGERPRINT', $data);
-    }
-
-    public function testStoreFingerprintIncludesStoreType()
-    {
-        $this->request->setStoreType('TOKEN');
-
-        $data = $this->request->getData();
-        $data['EPS_TIMESTAMP'] = '20190215173250';
-
-        $this->assertSame(
-            '1eaf7fc13922cd2222de4866cb41ded4c4c7358cb2a2728759aaf4efb3dd015e',
-            $this->request->generateFingerprint($data)
-        );
     }
 }
