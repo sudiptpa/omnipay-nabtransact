@@ -2,7 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class HostedPaymentPurchaseRequestTest extends TestCase
 {

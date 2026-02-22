@@ -4,7 +4,7 @@ namespace Omnipay\NABTransact\Message;
 
 use Omnipay\NABTransact\Transport\TransportInterface;
 use Omnipay\NABTransact\Transport\TransportResponse;
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class DirectPostRefundRequestTest extends TestCase
 {

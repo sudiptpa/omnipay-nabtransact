@@ -2,7 +2,7 @@
 
 namespace Omnipay\NABTransact;
 
-use Omnipay\Tests\GatewayTestCase;
+use Omnipay\NABTransact\Tests\Support\GatewayTestCase;
 
 class HostedPaymentGatewayTest extends GatewayTestCase
 {

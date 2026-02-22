@@ -305,6 +305,7 @@ See `ARCHITECTURE.md` for design details and extension points.
 ## NAB Feature Coverage
 
 Core payment features are mapped in `docs/feature-matrix.md` with request/response classes and test coverage.
+For a contributor-friendly package map, see `docs/features-implemented-tree.md`.
 This package targets payment-processing API coverage and does not include NAB admin/reporting portal features.
 
 ## Contributing

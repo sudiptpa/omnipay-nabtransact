@@ -2,7 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class SecureXMLPurchaseRequestTest extends TestCase
 {
@@ -29,7 +29,7 @@ class SecureXMLPurchaseRequestTest extends TestCase
 
     public function testSendSuccess()
     {
-        $this->setMockHttpResponse('SecureXMLPurchaseRequestSendSuccess.txt');
+        $this->queueFixtureResponse('SecureXMLPurchaseRequestSendSuccess.txt');
 
         $response = $this->request->send();
         $data = $response->getData();

@@ -4,7 +4,7 @@ namespace Omnipay\NABTransact;
 
 use Omnipay\NABTransact\Transport\TransportInterface;
 use Omnipay\NABTransact\Transport\TransportResponse;
-use Omnipay\Tests\GatewayTestCase;
+use Omnipay\NABTransact\Tests\Support\GatewayTestCase;
 
 class SecureXMLGatewayTest extends GatewayTestCase
 {

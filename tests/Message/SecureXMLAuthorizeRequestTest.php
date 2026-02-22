@@ -2,7 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class SecureXMLAuthorizeRequestTest extends TestCase
 {
@@ -29,7 +29,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
     public function testSendSuccess()
     {
-        $this->setMockHttpResponse('SecureXMLAuthorizeRequestSuccess.txt');
+        $this->queueFixtureResponse('SecureXMLAuthorizeRequestSuccess.txt');
 
         $response = $this->request->send();
 
@@ -51,7 +51,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
     public function testSendFailure()
     {
-        $this->setMockHttpResponse('SecureXMLAuthorizeRequestFail.txt');
+        $this->queueFixtureResponse('SecureXMLAuthorizeRequestFail.txt');
         $response = $this->request->send();
 
         $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
@@ -65,7 +65,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
     public function testInsufficientFundsFailure()
     {
-        $this->setMockHttpResponse('SecureXMLAuthorizeRequestInsufficientFundsFail.txt');
+        $this->queueFixtureResponse('SecureXMLAuthorizeRequestInsufficientFundsFail.txt');
         $response = $this->request->send();
 
         $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
@@ -79,7 +79,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
     public function testInvalidMerchantFailure()
     {
-        $this->setMockHttpResponse('SecureXMLAuthorizeRequestInvalidMerchantFail.txt');
+        $this->queueFixtureResponse('SecureXMLAuthorizeRequestInvalidMerchantFail.txt');
         $response = $this->request->send();
 
         $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
@@ -93,7 +93,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
     public function testInvalidMerchantIDFailure()
     {
-        $this->setMockHttpResponse('SecureXMLAuthorizeRequestInvalidMerchantIDFail.txt');
+        $this->queueFixtureResponse('SecureXMLAuthorizeRequestInvalidMerchantIDFail.txt');
         $response = $this->request->send();
 
         $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
