@@ -2,14 +2,15 @@
 
 **NAB Transact driver for the Omnipay PHP payment processing library**
 
-[![CI](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml/badge.svg)](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml)
-[![Latest Version](https://img.shields.io/packagist/v/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![Downloads](https://img.shields.io/packagist/dt/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![License](https://img.shields.io/packagist/l/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![PHP Version](https://img.shields.io/packagist/php-v/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+[![CI](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml/badge.svg)](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml) [![Latest Version](https://img.shields.io/packagist/v/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact) [![Downloads](https://img.shields.io/packagist/dt/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact) [![License](https://img.shields.io/packagist/l/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements NAB Transact support for Omnipay.
+
+## Compatibility
+
+- PHP `^7.2 || ^8.0`
+- `omnipay/common:^3`
 
 ## Installation
 
@@ -18,6 +19,24 @@ Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply
 ```
 composer require league/omnipay sudiptpa/omnipay-nabtransact
 ```
+
+## Start Here: Choose the Right Integration Flow
+
+- SecureXML (server-to-server):
+  - Use `NABTransact_SecureXML`
+  - Main methods: `authorize()`, `purchase()`, `capture()`, `refund()`, `echoTest()`
+- DirectPost (redirect + callback):
+  - Use `NABTransact_DirectPost`
+  - Start methods: `purchase()` or `authorize()`
+  - Callback methods: `completePurchase()`, `completeAuthorize()`
+- DirectPost operations API (server-to-server):
+  - Use `capture()`, `refund()`, `void()`, `store()`, `createEMV3DSOrder()`
+- Hosted Payment Page:
+  - Use `NABTransact_HostedPayment`
+  - Methods: `purchase()`, `completePurchase()`
+- UnionPay:
+  - Use `NABTransact_UnionPay`
+  - Methods: `purchase()`, `completePurchase()`
 
 ## Basic Usage
 
@@ -308,6 +327,13 @@ See `ARCHITECTURE.md` for design details and extension points.
 Core payment features are mapped in `docs/feature-matrix.md` with request/response classes and test coverage.
 For a contributor-friendly package map, see `docs/features-implemented-tree.md`.
 This package targets payment-processing API coverage and does not include NAB admin/reporting portal features.
+
+## Documentation Map
+
+- `README.md`: install + practical flow examples
+- `ARCHITECTURE.md`: project structure, runtime flow, extension points
+- `docs/feature-matrix.md`: feature-by-feature status map
+- `docs/features-implemented-tree.md`: full implementation tree
 
 ## Contributing
 
