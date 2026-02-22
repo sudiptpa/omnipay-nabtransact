@@ -17,12 +17,12 @@ final class MockStream implements StreamInterface
         $this->content = $content;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->content;
     }
 
-    public function close()
+    public function close(): void
     {
         // no-op
     }
@@ -32,56 +32,59 @@ final class MockStream implements StreamInterface
         return null;
     }
 
-    public function getSize()
+    public function getSize(): ?int
     {
         return strlen($this->content);
     }
 
-    public function tell()
+    public function tell(): int
     {
         return $this->position;
     }
 
-    public function eof()
+    public function eof(): bool
     {
         return $this->position >= strlen($this->content);
     }
 
-    public function isSeekable()
+    public function isSeekable(): bool
     {
         return true;
     }
 
-    public function seek($offset, $whence = SEEK_SET)
+    public function seek($offset, $whence = SEEK_SET): void
     {
+        $offset = (int) $offset;
+        $whence = (int) $whence;
+
         if ($whence === SEEK_SET) {
-            $this->position = max(0, (int) $offset);
+            $this->position = max(0, $offset);
 
             return;
         }
 
         if ($whence === SEEK_CUR) {
-            $this->position = max(0, $this->position + (int) $offset);
+            $this->position = max(0, $this->position + $offset);
 
             return;
         }
 
         if ($whence === SEEK_END) {
-            $this->position = max(0, strlen($this->content) + (int) $offset);
+            $this->position = max(0, strlen($this->content) + $offset);
         }
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
 
-    public function isWritable()
+    public function isWritable(): bool
     {
         return true;
     }
 
-    public function write($string)
+    public function write($string): int
     {
         $string = (string) $string;
 
@@ -99,12 +102,12 @@ final class MockStream implements StreamInterface
         return strlen($string);
     }
 
-    public function isReadable()
+    public function isReadable(): bool
     {
         return true;
     }
 
-    public function read($length)
+    public function read($length): string
     {
         $length = max(0, (int) $length);
 
@@ -118,7 +121,7 @@ final class MockStream implements StreamInterface
         return $chunk;
     }
 
-    public function getContents()
+    public function getContents(): string
     {
         if ($this->eof()) {
             return '';
@@ -139,3 +142,4 @@ final class MockStream implements StreamInterface
         return null;
     }
 }
+

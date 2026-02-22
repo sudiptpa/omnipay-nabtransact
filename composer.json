@@ -34,7 +34,7 @@
   },
   "require-dev": {
     "phpstan/phpstan": "^1.12",
-    "phpunit/phpunit": "^8.5 || ^9.6",
+    "phpunit/phpunit": "^8.5.14 || ^9.6",
     "squizlabs/php_codesniffer": "^3"
   },
   "extra": {
@@ -50,7 +50,10 @@
     "fix-style": "phpcbf -p --standard=PSR12 src tests"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   },
   "prefer-stable": true
 }

@@ -17,7 +17,7 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
 
-        $this->assertInstanceOf(Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse::class, $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('12345', $response->getTransactionReference());
@@ -37,7 +37,7 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
 
-        $this->assertInstanceOf(Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse::class, $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\UnionPayCompletePurchaseResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('12345', $response->getTransactionReference());

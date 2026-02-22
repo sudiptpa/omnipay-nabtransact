@@ -37,7 +37,7 @@ class DirectPostAuthorizeRequestTest extends TestCase
     {
         $response = $this->request->send();
 
-        $this->assertInstanceOf(Omnipay\NABTransact\Message\DirectPostAuthorizeResponse::class, $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostAuthorizeResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNull($response->getTransactionReference());

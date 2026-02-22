@@ -32,7 +32,7 @@ class UnionPayPurchaseRequestTest extends TestCase
     {
         $response = $this->request->send();
 
-        $this->assertInstanceOf(Omnipay\NABTransact\Message\UnionPayPurchaseResponse::class, $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\UnionPayPurchaseResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());

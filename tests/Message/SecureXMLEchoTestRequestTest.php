@@ -24,7 +24,7 @@ class SecureXMLEchoTestRequestTest extends TestCase
 
         $response = $this->request->send();
 
-        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
         $this->assertSame('Normal', $response->getMessage());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('000', $response->getStatusCode());

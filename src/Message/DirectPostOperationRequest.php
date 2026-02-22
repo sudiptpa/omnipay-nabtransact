@@ -95,6 +95,8 @@ abstract class DirectPostOperationRequest extends DirectPostAbstractRequest
     protected function parseTransportResponse(TransportResponse $response)
     {
         $body = trim((string) $response->getBody());
+        $trimmedBody = ltrim($body);
+        $looksLikeXml = $trimmedBody !== '' && strpos($trimmedBody, '<') === 0;
 
         $parsed = [
             'http_status_code' => $response->getStatusCode(),
@@ -110,10 +112,12 @@ abstract class DirectPostOperationRequest extends DirectPostAbstractRequest
             return array_merge($parsed, $this->normalizeKeys($json));
         }
 
-        $query = [];
-        parse_str($body, $query);
-        if (!empty($query)) {
-            return array_merge($parsed, $this->normalizeKeys($query));
+        if (!$looksLikeXml) {
+            $query = [];
+            parse_str($body, $query);
+            if (!empty($query)) {
+                return array_merge($parsed, $this->normalizeKeys($query));
+            }
         }
 
         if (function_exists('simplexml_load_string')) {

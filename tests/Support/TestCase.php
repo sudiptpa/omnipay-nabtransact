@@ -58,6 +58,15 @@ class TestCase extends PHPUnitTestCase
             $this->fail('Unable to read mock HTTP fixture: '.$filename);
         }
 
+        // Legacy fixture files may contain an HTTP status line and headers.
+        // Keep only the actual payload body for request parsers.
+        if (preg_match('/^HTTP\\/\\d(?:\\.\\d)?\\s+\\d+/', $body) === 1) {
+            $parts = preg_split("/\\r?\\n\\r?\\n/", $body, 2);
+            if (is_array($parts) && isset($parts[1])) {
+                $body = $parts[1];
+            }
+        }
+
         return $body;
     }
 

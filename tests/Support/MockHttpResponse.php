@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Omnipay\NABTransact\Tests\Support;
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -21,7 +22,7 @@ final class MockHttpResponse implements ResponseInterface
     private string $reasonPhrase;
 
     /** @var array<int, string> */
-    private static $defaultPhrases = [
+    private static array $defaultPhrases = [
         200 => 'OK',
         400 => 'Bad Request',
         401 => 'Unauthorized',
@@ -45,20 +46,20 @@ final class MockHttpResponse implements ResponseInterface
 
         foreach ($headers as $name => $value) {
             $values = is_array($value) ? $value : [(string) $value];
-            $this->headers[strtolower($name)] = array_values(array_map('strval', $values));
+            $this->headers[strtolower((string) $name)] = array_values(array_map('strval', $values));
         }
 
         $this->body = $body instanceof StreamInterface ? $body : new MockStream((string) $body);
-        $this->protocolVersion = $protocolVersion;
-        $this->reasonPhrase = $reasonPhrase;
+        $this->protocolVersion = (string) $protocolVersion;
+        $this->reasonPhrase = (string) $reasonPhrase;
     }
 
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocolVersion;
     }
 
-    public function withProtocolVersion($version)
+    public function withProtocolVersion($version): MessageInterface
     {
         $clone = clone $this;
         $clone->protocolVersion = (string) $version;
@@ -66,29 +67,29 @@ final class MockHttpResponse implements ResponseInterface
         return $clone;
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
 
-    public function hasHeader($name)
+    public function hasHeader($name): bool
     {
         return array_key_exists(strtolower((string) $name), $this->headers);
     }
 
-    public function getHeader($name)
+    public function getHeader($name): array
     {
         $key = strtolower((string) $name);
 
         return $this->headers[$key] ?? [];
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine($name): string
     {
         return implode(', ', $this->getHeader($name));
     }
 
-    public function withHeader($name, $value)
+    public function withHeader($name, $value): MessageInterface
     {
         $clone = clone $this;
         $values = is_array($value) ? $value : [(string) $value];
@@ -97,7 +98,7 @@ final class MockHttpResponse implements ResponseInterface
         return $clone;
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader($name, $value): MessageInterface
     {
         $clone = clone $this;
         $key = strtolower((string) $name);
@@ -112,7 +113,7 @@ final class MockHttpResponse implements ResponseInterface
         return $clone;
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader($name): MessageInterface
     {
         $clone = clone $this;
         unset($clone->headers[strtolower((string) $name)]);
@@ -120,25 +121,25 @@ final class MockHttpResponse implements ResponseInterface
         return $clone;
     }
 
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->body;
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody($body): MessageInterface
     {
         $clone = clone $this;
-        $clone->body = $body;
+        $clone->body = $body instanceof StreamInterface ? $body : new MockStream((string) $body);
 
         return $clone;
     }
 
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->statusCode;
     }
 
-    public function withStatus($code, $reasonPhrase = '')
+    public function withStatus($code, $reasonPhrase = ''): ResponseInterface
     {
         $clone = clone $this;
         $clone->statusCode = (int) $code;
@@ -147,7 +148,7 @@ final class MockHttpResponse implements ResponseInterface
         return $clone;
     }
 
-    public function getReasonPhrase()
+    public function getReasonPhrase(): string
     {
         if ($this->reasonPhrase !== '') {
             return $this->reasonPhrase;

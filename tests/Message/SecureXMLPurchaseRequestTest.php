@@ -34,7 +34,7 @@ class SecureXMLPurchaseRequestTest extends TestCase
         $response = $this->request->send();
         $data = $response->getData();
 
-        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());

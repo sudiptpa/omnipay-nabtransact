@@ -6,6 +6,7 @@ namespace Omnipay\NABTransact\Tests\Support;
 
 use Omnipay\Common\Http\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 
 final class MockHttpClient implements ClientInterface
 {
@@ -48,11 +49,15 @@ final class MockHttpClient implements ClientInterface
         ];
 
         if (empty($this->responses)) {
-            return new MockHttpResponse(200, [], '');
+            throw new RuntimeException('No queued mock HTTP response for '.$method.' '.$uri);
         }
 
         $response = array_shift($this->responses);
 
-        return $response instanceof ResponseInterface ? $response : new MockHttpResponse(200, [], '');
+        if (!$response instanceof ResponseInterface) {
+            throw new RuntimeException('Queued mock HTTP response is invalid.');
+        }
+
+        return $response;
     }
 }
