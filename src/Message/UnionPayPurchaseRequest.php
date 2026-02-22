@@ -2,6 +2,8 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+
 /**
  * UnionPayPurchaseRequest.
  */
@@ -18,6 +20,21 @@ class UnionPayPurchaseRequest extends DirectPostAbstractRequest
     public function getData()
     {
         $this->validate('amount', 'returnUrl', 'transactionId');
+
+        if ((bool) $this->getHasRiskManagementEnabled()) {
+            throw new InvalidRequestException('UPOP does not support risk-management transaction types.');
+        }
+
+        if ((bool) $this->getHasEMV3DSEnabled()) {
+            throw new InvalidRequestException('UPOP does not support EMV 3DS transaction types.');
+        }
+
+        if ($this->getCurrency() !== null) {
+            $currency = strtoupper((string) $this->getCurrency());
+            if (!in_array($currency, ['AUD', 'CNY'], true)) {
+                throw new InvalidRequestException('UPOP only supports AUD or CNY currencies.');
+            }
+        }
 
         $data = $this->getBaseData();
 

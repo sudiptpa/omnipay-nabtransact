@@ -58,6 +58,7 @@ src/
 - Backward-compat typo alias (`vefiyFingerPrint`) remains supported.
 - DirectPost supports purchase, authorize, complete callbacks, store-only flow, and additive server-to-server operations (`capture`, `refund`, `void`).
 - EMV 3DS order management is exposed via `createEMV3DSOrder()`.
+- Advanced optional DirectPost fields are supported for surcharge reporting, MCR card scheme routing hint, and result/callback parameter passthrough.
 
 ### 3) Hosted Payment
 

@@ -2,6 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class UnionPayPurchaseRequestTest extends TestCase
@@ -46,5 +47,35 @@ class UnionPayPurchaseRequestTest extends TestCase
         );
         $this->assertSame('GET', $response->getRedirectMethod());
         $this->assertArrayHasKey('EPS_FINGERPRINT', $response->getData());
+    }
+
+    public function testRejectsUnsupportedCurrencyForUpop()
+    {
+        $this->request->setCurrency('USD');
+
+        $this->expectException(InvalidRequestException::class);
+        $this->expectExceptionMessage('UPOP only supports AUD or CNY currencies.');
+
+        $this->request->getData();
+    }
+
+    public function testRejectsRiskManagementForUpop()
+    {
+        $this->request->setHasRiskManagementEnabled(true);
+
+        $this->expectException(InvalidRequestException::class);
+        $this->expectExceptionMessage('UPOP does not support risk-management transaction types.');
+
+        $this->request->getData();
+    }
+
+    public function testRejectsEmvForUpop()
+    {
+        $this->request->setHasEMV3DSEnabled(true);
+
+        $this->expectException(InvalidRequestException::class);
+        $this->expectExceptionMessage('UPOP does not support EMV 3DS transaction types.');
+
+        $this->request->getData();
     }
 }
