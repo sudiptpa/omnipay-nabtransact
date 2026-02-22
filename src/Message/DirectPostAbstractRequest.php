@@ -2,6 +2,7 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\Common\CreditCard;
 use Omnipay\NABTransact\Enums\TransactionType;
 
 /**
@@ -18,6 +19,11 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
      * @var string
      */
     public $liveEndpoint = 'https://transact.nab.com.au/live/directpostv2/authorise';
+
+    /**
+     * @var string|int
+     */
+    protected $txnType = '0';
 
     /**
      * @return string
@@ -93,9 +99,9 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
             $data['EPS_CURRENCY'] = $currency;
         }
 
-        $card = $this->getCard();
+        $card = $this->getParameter('card');
 
-        if ($card) {
+        if ($card instanceof CreditCard) {
             if ($billingFirstName = $card->getBillingFirstName()) {
                 $data['EPS_FIRSTNAME'] = $billingFirstName;
             }

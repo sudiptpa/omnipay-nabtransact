@@ -23,7 +23,7 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getMessage()
     {
@@ -35,7 +35,7 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCode()
     {
@@ -47,7 +47,7 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTransactionReference()
     {

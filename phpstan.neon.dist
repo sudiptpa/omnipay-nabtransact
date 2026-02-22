@@ -2,8 +2,4 @@ parameters:
   level: 5
   paths:
     - src
-    - tests
   inferPrivatePropertyTypeFromConstructor: true
-  checkMissingIterableValueType: false
-  ignoreErrors:
-    - '#Call to deprecated method vefiyFingerPrint\(\)#'

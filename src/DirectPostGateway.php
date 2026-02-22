@@ -3,6 +3,15 @@
 namespace Omnipay\NABTransact;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\NABTransact\Message\DirectPostAuthorizeRequest;
+use Omnipay\NABTransact\Message\DirectPostCaptureRequest;
+use Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest;
+use Omnipay\NABTransact\Message\DirectPostPurchaseRequest;
+use Omnipay\NABTransact\Message\DirectPostRefundRequest;
+use Omnipay\NABTransact\Message\DirectPostReversalRequest;
+use Omnipay\NABTransact\Message\DirectPostStoreRequest;
+use Omnipay\NABTransact\Message\DirectPostWebhookRequest;
+use Omnipay\NABTransact\Message\EMV3DSOrderRequest;
 use Omnipay\NABTransact\Transport\TransportInterface;
 
 /**
@@ -154,7 +163,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function authorize(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostAuthorizeRequest', $parameters);
+        $request = $this->createRequest(DirectPostAuthorizeRequest::class, $parameters);
+        /** @var DirectPostAuthorizeRequest $request */
+
+        return $request;
     }
 
     /**
@@ -164,17 +176,23 @@ class DirectPostGateway extends AbstractGateway
      */
     public function completeAuthorize(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $parameters);
+        $request = $this->createRequest(DirectPostCompletePurchaseRequest::class, $parameters);
+        /** @var DirectPostCompletePurchaseRequest $request */
+
+        return $request;
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\NABTransact\Message\DirectPostPurchaseRequest
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
     public function purchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostPurchaseRequest', $parameters);
+        $request = $this->createRequest(DirectPostPurchaseRequest::class, $parameters);
+        /** @var DirectPostPurchaseRequest $request */
+
+        return $request;
     }
 
     /**
@@ -184,7 +202,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function completePurchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $parameters);
+        $request = $this->createRequest(DirectPostCompletePurchaseRequest::class, $parameters);
+        /** @var DirectPostCompletePurchaseRequest $request */
+
+        return $request;
     }
 
     /**
@@ -196,7 +217,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function capture(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostCaptureRequest', $parameters);
+        $request = $this->createRequest(DirectPostCaptureRequest::class, $parameters);
+        /** @var DirectPostCaptureRequest $request */
+
+        return $request;
     }
 
     /**
@@ -208,7 +232,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function refund(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostRefundRequest', $parameters);
+        $request = $this->createRequest(DirectPostRefundRequest::class, $parameters);
+        /** @var DirectPostRefundRequest $request */
+
+        return $request;
     }
 
     /**
@@ -220,7 +247,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function void(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostReversalRequest', $parameters);
+        $request = $this->createRequest(DirectPostReversalRequest::class, $parameters);
+        /** @var DirectPostReversalRequest $request */
+
+        return $request;
     }
 
     /**
@@ -232,7 +262,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function createEMV3DSOrder(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\EMV3DSOrderRequest', $parameters);
+        $request = $this->createRequest(EMV3DSOrderRequest::class, $parameters);
+        /** @var EMV3DSOrderRequest $request */
+
+        return $request;
     }
 
     /**
@@ -244,7 +277,10 @@ class DirectPostGateway extends AbstractGateway
      */
     public function store(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\DirectPostStoreRequest', $parameters);
+        $request = $this->createRequest(DirectPostStoreRequest::class, $parameters);
+        /** @var DirectPostStoreRequest $request */
+
+        return $request;
     }
 
     /**
@@ -256,6 +292,6 @@ class DirectPostGateway extends AbstractGateway
      */
     public function webhook(array $data = [])
     {
-        return new \Omnipay\NABTransact\Message\DirectPostWebhookRequest($data);
+        return new DirectPostWebhookRequest($data);
     }
 }

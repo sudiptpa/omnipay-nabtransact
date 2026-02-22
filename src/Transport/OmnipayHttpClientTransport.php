@@ -36,15 +36,7 @@ final class OmnipayHttpClientTransport implements TransportInterface
         $responseBody = '';
 
         if (method_exists($response, 'getBody')) {
-            $stream = $response->getBody();
-
-            if (is_string($stream)) {
-                $responseBody = $stream;
-            } elseif (method_exists($stream, '__toString')) {
-                $responseBody = (string) $stream;
-            } elseif (method_exists($stream, 'getContents')) {
-                $responseBody = (string) $stream->getContents();
-            }
+            $responseBody = (string) $response->getBody();
         }
 
         return new TransportResponse($statusCode, $responseBody);

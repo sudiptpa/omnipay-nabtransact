@@ -27,9 +27,9 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
     protected $requestType = 'Payment';
 
     /**
-     * @var string
+     * @var int
      */
-    protected $txnType;
+    protected $txnType = 0;
 
     /**
      * @var array
@@ -118,7 +118,7 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         $messageInfo = $xml->addChild('MessageInfo');
         $messageInfo->messageID = $this->getMessageId();
         $messageInfo->addChild('messageTimestamp', $this->generateTimestamp());
-        $messageInfo->addChild('timeoutValue', 60);
+        $messageInfo->addChild('timeoutValue', '60');
         $messageInfo->addChild('apiVersion', 'xml-4.2');
 
         $merchantInfo = $xml->addChild('MerchantInfo');
@@ -141,13 +141,13 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
 
         $payment = $xml->addChild('Payment');
         $txnList = $payment->addChild('TxnList');
-        $txnList->addAttribute('count', 1);
+        $txnList->addAttribute('count', '1');
         $transaction = $txnList->addChild('Txn');
-        $transaction->addAttribute('ID', 1);
-        $transaction->addChild('txnType', $this->txnType);
-        $transaction->addChild('txnSource', 23);
-        $transaction->addChild('txnChannel', 0);
-        $transaction->addChild('amount', $this->getAmountInteger());
+        $transaction->addAttribute('ID', '1');
+        $transaction->addChild('txnType', (string) $this->txnType);
+        $transaction->addChild('txnSource', '23');
+        $transaction->addChild('txnChannel', '0');
+        $transaction->addChild('amount', (string) $this->getAmountInteger());
         $transaction->addChild('currency', $this->getCurrency());
         $transaction->addChild('purchaseOrderNo', $this->getTransactionId());
 

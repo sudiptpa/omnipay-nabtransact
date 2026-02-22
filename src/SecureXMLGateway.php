@@ -3,6 +3,12 @@
 namespace Omnipay\NABTransact;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\NABTransact\Message\SecureXMLAuthorizeRequest;
+use Omnipay\NABTransact\Message\SecureXMLCaptureRequest;
+use Omnipay\NABTransact\Message\SecureXMLEchoTestRequest;
+use Omnipay\NABTransact\Message\SecureXMLPurchaseRequest;
+use Omnipay\NABTransact\Message\SecureXMLRefundRequest;
+use Omnipay\NABTransact\Message\SecureXMLRiskPurchaseRequest;
 use Omnipay\NABTransact\Transport\TransportInterface;
 
 /**
@@ -125,7 +131,10 @@ class SecureXMLGateway extends AbstractGateway
      */
     public function authorize(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLAuthorizeRequest', $parameters);
+        $request = $this->createRequest(SecureXMLAuthorizeRequest::class, $parameters);
+        /** @var SecureXMLAuthorizeRequest $request */
+
+        return $request;
     }
 
     /**
@@ -135,21 +144,30 @@ class SecureXMLGateway extends AbstractGateway
      */
     public function capture(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLCaptureRequest', $parameters);
+        $request = $this->createRequest(SecureXMLCaptureRequest::class, $parameters);
+        /** @var SecureXMLCaptureRequest $request */
+
+        return $request;
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\NABTransact\Message\SecureXMLPurchaseRequest
+     * @return \Omnipay\NABTransact\Message\SecureXMLPurchaseRequest|\Omnipay\NABTransact\Message\SecureXMLRiskPurchaseRequest
      */
     public function purchase(array $parameters = [])
     {
         if ($this->getRiskManagement()) {
-            return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLRiskPurchaseRequest', $parameters);
+            $request = $this->createRequest(SecureXMLRiskPurchaseRequest::class, $parameters);
+            /** @var SecureXMLRiskPurchaseRequest $request */
+
+            return $request;
         }
 
-        return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLPurchaseRequest', $parameters);
+        $request = $this->createRequest(SecureXMLPurchaseRequest::class, $parameters);
+        /** @var SecureXMLPurchaseRequest $request */
+
+        return $request;
     }
 
     /**
@@ -159,7 +177,10 @@ class SecureXMLGateway extends AbstractGateway
      */
     public function refund(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLRefundRequest', $parameters);
+        $request = $this->createRequest(SecureXMLRefundRequest::class, $parameters);
+        /** @var SecureXMLRefundRequest $request */
+
+        return $request;
     }
 
     /**
@@ -169,6 +190,9 @@ class SecureXMLGateway extends AbstractGateway
      */
     public function echoTest(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\SecureXMLEchoTestRequest', $parameters);
+        $request = $this->createRequest(SecureXMLEchoTestRequest::class, $parameters);
+        /** @var SecureXMLEchoTestRequest $request */
+
+        return $request;
     }
 }
