@@ -3,12 +3,13 @@
 **NAB Transact driver for the Omnipay PHP payment processing library**
 
 [![CI](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml/badge.svg)](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml)
+[![Latest Version](https://img.shields.io/packagist/v/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+[![Downloads](https://img.shields.io/packagist/dt/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+[![License](https://img.shields.io/packagist/l/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+[![PHP Version](https://img.shields.io/packagist/php-v/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
+
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements NAB Transact support for Omnipay.
-
-[![Latest Stable Version](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/v/stable?style=flat-square)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![Total Downloads](https://poser.pugx.org/sudiptpa/omnipay-nabtransact/downloads?style=flat-square)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/sudiptpa/omnipay-nabtransact/master/LICENSE)
 
 ## Installation
 
