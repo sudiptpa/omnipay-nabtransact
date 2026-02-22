@@ -25,6 +25,121 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
      */
     protected $txnType = '0';
 
+    public function getResultParams()
+    {
+        return $this->getParameter('resultParams');
+    }
+
+    public function setResultParams($value)
+    {
+        return $this->setParameter('resultParams', $value);
+    }
+
+    public function getCallbackParams()
+    {
+        return $this->getParameter('callbackParams');
+    }
+
+    public function setCallbackParams($value)
+    {
+        return $this->setParameter('callbackParams', $value);
+    }
+
+    public function getCardScheme()
+    {
+        return $this->getParameter('cardScheme');
+    }
+
+    public function setCardScheme($value)
+    {
+        return $this->setParameter('cardScheme', $value);
+    }
+
+    public function getSurchargeEnabled()
+    {
+        return $this->getParameter('surchargeEnabled');
+    }
+
+    public function setSurchargeEnabled($value)
+    {
+        return $this->setParameter('surchargeEnabled', $value);
+    }
+
+    public function getSurchargeAmount()
+    {
+        return $this->getParameter('surchargeAmount');
+    }
+
+    public function setSurchargeAmount($value)
+    {
+        return $this->setParameter('surchargeAmount', $value);
+    }
+
+    public function getSurchargeRate()
+    {
+        return $this->getParameter('surchargeRate');
+    }
+
+    public function setSurchargeRate($value)
+    {
+        return $this->setParameter('surchargeRate', $value);
+    }
+
+    public function getSurchargeFee()
+    {
+        return $this->getParameter('surchargeFee');
+    }
+
+    public function setSurchargeFee($value)
+    {
+        return $this->setParameter('surchargeFee', $value);
+    }
+
+    /**
+     * @param array<string,mixed> $data
+     *
+     * @return string
+     */
+    protected function buildFingerprintFromFields(array $data)
+    {
+        $fields = [
+            'EPS_MERCHANT',
+            '__TRANSACTION_PASSWORD__',
+            'EPS_TXNTYPE',
+            'EPS_REFERENCEID',
+            'EPS_AMOUNT',
+            'EPS_TIMESTAMP',
+        ];
+
+        if (isset($data['EPS_ORDERID'])) {
+            $fields[] = 'EPS_ORDERID';
+        }
+
+        if (isset($data['EPS_CARDSCHEME'])) {
+            $fields[] = 'EPS_CARDSCHEME';
+        }
+
+        if (isset($data['EPS_SURCHARGEENABLED'])) {
+            $fields[] = 'EPS_SURCHARGEENABLED';
+            $fields[] = 'EPS_SURCHARGEAMOUNT';
+            $fields[] = 'EPS_SURCHARGERATE';
+            $fields[] = 'EPS_SURCHARGEFEE';
+        }
+
+        $hashable = [];
+        foreach ($fields as $field) {
+            if ($field === '__TRANSACTION_PASSWORD__') {
+                $hashable[] = (string) $this->getTransactionPassword();
+
+                continue;
+            }
+
+            $hashable[] = isset($data[$field]) ? (string) $data[$field] : '';
+        }
+
+        return hash_hmac('sha256', implode('|', $hashable), $this->getTransactionPassword());
+    }
+
     /**
      * @return string
      */
@@ -54,25 +169,7 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
      */
     public function generateFingerprint(array $data)
     {
-        $hashable = [
-            $data['EPS_MERCHANT'],
-            $this->getTransactionPassword(),
-            $data['EPS_TXNTYPE'],
-            $data['EPS_REFERENCEID'],
-            $data['EPS_AMOUNT'],
-            $data['EPS_TIMESTAMP'],
-        ];
-
-        if ($this->getHasEMV3DSEnabled()) {
-            $hashable = array_merge(
-                $hashable,
-                [$data['EPS_ORDERID']]
-            );
-        }
-
-        $hash = implode('|', $hashable);
-
-        return hash_hmac('sha256', $hash, $this->getTransactionPassword());
+        return $this->buildFingerprintFromFields($data);
     }
 
     /**
@@ -95,8 +192,20 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
             $data['EPS_CALLBACKURL'] = $this->getNotifyUrl();
         }
 
+        if ($resultParams = $this->getResultParams()) {
+            $data['EPS_RESULTPARAMS'] = $resultParams;
+        }
+
+        if ($callbackParams = $this->getCallbackParams()) {
+            $data['EPS_CALLBACKPARAMS'] = $callbackParams;
+        }
+
         if ($currency = $this->getCurrency()) {
             $data['EPS_CURRENCY'] = $currency;
+        }
+
+        if ($cardScheme = $this->getCardScheme()) {
+            $data['EPS_CARDSCHEME'] = $cardScheme;
         }
 
         $card = $this->getParameter('card');
@@ -133,6 +242,13 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
 
         if ($this->getHasEMV3DSEnabled()) {
             $data['EPS_ORDERID'] = $this->getTransactionReference();
+        }
+
+        if ((bool) $this->getSurchargeEnabled()) {
+            $data['EPS_SURCHARGEENABLED'] = 'true';
+            $data['EPS_SURCHARGEAMOUNT'] = (string) ($this->getSurchargeAmount() !== null ? $this->getSurchargeAmount() : '0.00');
+            $data['EPS_SURCHARGERATE'] = (string) ($this->getSurchargeRate() !== null ? $this->getSurchargeRate() : '0.00');
+            $data['EPS_SURCHARGEFEE'] = (string) ($this->getSurchargeFee() !== null ? $this->getSurchargeFee() : '0.00');
         }
 
         $data['EPS_FINGERPRINT'] = $this->generateFingerprint($data);

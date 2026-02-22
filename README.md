@@ -244,6 +244,32 @@ The following gateways are provided by this package:
     }
 ```
 
+#### DirectPost Advanced Optional Parameters
+
+```php
+    $response = $gateway->purchase([
+        'amount' => '112.00',
+        'currency' => 'AUD',
+        'transactionId' => 'ORDER-ADV-100',
+        'card' => $card,
+        'returnUrl' => 'https://example.com/payment/response',
+        'notifyUrl' => 'https://example.com/payment/callback',
+
+        // Optional reporting/callback field control
+        'resultParams' => 'merchant,refid,rescode,restext',
+        'callbackParams' => 'merchant,refid,rescode,restext',
+
+        // Optional surcharge reporting fields
+        'surchargeEnabled' => true,
+        'surchargeAmount' => '12.00',
+        'surchargeRate' => '5.00',
+        'surchargeFee' => '7.00',
+
+        // Optional MCR route hint
+        'cardScheme' => 'scheme', // or 'eftpos'
+    ])->send();
+```
+
 ### NAB Transact DirectPost v2 UnionPay Online Payment
 
 ```php

@@ -33,6 +33,9 @@ omnipay-nabtransact
 │   │   ├── Security/txn behavior
 │   │   │   ├── fingerprint generation + verification
 │   │   │   ├── risk + EMV txnType resolution
+│   │   │   ├── surcharge parameter passthrough
+│   │   │   ├── card scheme (MCR) passthrough
+│   │   │   └── result/callback parameter passthrough
 │   │   │   └── legacy typo alias support: vefiyFingerPrint()
 │   │   └── transport + timeout control for server-to-server calls
 │   │
@@ -44,7 +47,8 @@ omnipay-nabtransact
 │   │
 │   └── NABTransact_UnionPay (UnionPayGateway)
 │       ├── purchase() -> UnionPayPurchaseRequest
-│       └── completePurchase() -> UnionPayCompletePurchaseRequest
+│       ├── completePurchase() -> UnionPayCompletePurchaseRequest
+│       └── UPOP guard rails (currency/risk/EMV validation)
 │
 ├── Response Models
 │   ├── SecureXMLResponse

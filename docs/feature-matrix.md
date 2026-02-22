@@ -37,6 +37,9 @@ Out of scope:
 | Reversal/void (server-to-server) | `void()` | `DirectPostReversalRequest` | Implemented |
 | DirectPost API response mapper | n/a | `DirectPostApiResponse` | Implemented |
 | Fingerprint verification helper | `webhook()` | `DirectPostWebhookRequest` | Implemented |
+| Result/callback parameter passthrough | `setResultParams()/setCallbackParams()` | `DirectPostAbstractRequest` | Implemented |
+| Surcharge reporting parameters | `setSurcharge*()` | `DirectPostAbstractRequest` | Implemented |
+| MCR card scheme passthrough | `setCardScheme()` | `DirectPostAbstractRequest` | Implemented |
 | EMV 3DS txnType mapping | `setHasEMV3DSEnabled(true)` | `DirectPostAbstractRequest` | Implemented |
 | Risk-managed txnType mapping | `setHasRiskManagementEnabled(true)` | `DirectPostAbstractRequest` | Implemented |
 | Risk + EMV txnType mapping | both flags enabled | `DirectPostAbstractRequest` | Implemented |
@@ -57,6 +60,7 @@ Out of scope:
 | UnionPay purchase redirect | `purchase()` | `UnionPayPurchaseRequest` | Implemented |
 | UnionPay callback completion | `completePurchase()` | `UnionPayCompletePurchaseRequest` | Implemented |
 | UnionPay completion response mapping | n/a | `UnionPayCompletePurchaseResponse` | Implemented |
+| UPOP currency/flow guards | `purchase()` validation | `UnionPayPurchaseRequest` | Implemented |
 
 ## Transport Layer
 
