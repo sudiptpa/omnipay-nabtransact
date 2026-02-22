@@ -23,10 +23,6 @@ final class CurlTransport implements TransportInterface
 
         $handle = curl_init();
 
-        if ($handle === false) {
-            throw new RuntimeException('Unable to initialize cURL transport.');
-        }
-
         $formattedHeaders = [];
         foreach ($headers as $name => $value) {
             $formattedHeaders[] = $name.': '.$value;

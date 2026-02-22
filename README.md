@@ -117,23 +117,23 @@ The following gateways are provided by this package:
     $gateway->setTestMode(true);
     $gateway->setHasEMV3DSEnabled(true);
 
-    $card = new CreditCard(array(
+    $card = new CreditCard([
         'firstName' => 'Sujip',
         'lastName' => 'Thapa',
         'number' => '4444333322221111',
         'expiryMonth' => '10',
         'expiryYear' => '2030',
         'cvv' => '123',
-    ));
+    ]);
 
-    $response = $gateway->purchase(array(
+    $response = $gateway->purchase([
         'amount' => '12.00',
         'transactionId' => 'ORDER-ZYX8',
         'transactionReference' => '11fc42b0-bb7a-41a4-8b3c-096b3fd4d402',
         'currency' => 'AUD',
         'card' => $card,
         'clientIp' => '192.168.1.1'
-    ))
+    ])
         ->send();
 
     if ($response->isRedirect()) {
@@ -156,11 +156,11 @@ The following gateways are provided by this package:
     $gateway->setTransactionPassword('abcd1234');
     $gateway->setTestMode(true);
 
-    $response = $gateway->store(array(
+    $response = $gateway->store([
         'transactionId' => 'STORE-ORDER-100',
         'returnUrl' => 'http://example.com/payment/response',
         'card' => $card,
-    ))->send();
+    ])->send();
 
     if ($response->isRedirect()) {
         $response->redirect();
@@ -175,12 +175,12 @@ The following gateways are provided by this package:
     $gateway->setTransactionPassword('abcd1234');
     $gateway->setTestMode(true);
 
-    $response = $gateway->capture(array(
+    $response = $gateway->capture([
         'transactionId' => 'CAPTURE-ORDER-100',
         'transactionReference' => 'NAB-ORIGINAL-TXN-ID',
         'amount' => '12.00',
         'currency' => 'AUD',
-    ))->send();
+    ])->send();
 
     if ($response->isSuccessful()) {
         echo 'Capture successful: '.$response->getTransactionReference();
@@ -190,33 +190,33 @@ The following gateways are provided by this package:
 #### DirectPost Refund (Server-to-Server)
 
 ```php
-    $response = $gateway->refund(array(
+    $response = $gateway->refund([
         'transactionId' => 'REFUND-ORDER-100',
         'transactionReference' => 'NAB-SETTLED-TXN-ID',
         'amount' => '5.00',
         'currency' => 'AUD',
-    ))->send();
+    ])->send();
 ```
 
 #### DirectPost Reversal/Void (Server-to-Server)
 
 ```php
-    $response = $gateway->void(array(
+    $response = $gateway->void([
         'transactionId' => 'VOID-ORDER-100',
         'transactionReference' => 'NAB-AUTH-TXN-ID',
         'amount' => '12.00',
-    ))->send();
+    ])->send();
 ```
 
 #### EMV 3DS Order Creation API
 
 ```php
-    $response = $gateway->createEMV3DSOrder(array(
+    $response = $gateway->createEMV3DSOrder([
         'amount' => '12.00',
         'currency' => 'AUD',
         'clientIp' => '203.0.113.10',
         'transactionReference' => 'ORDER-REF-100',
-    ))->send();
+    ])->send();
 
     if ($response->isSuccessful()) {
         echo 'Order ID: '.$response->getOrderId();
@@ -238,12 +238,12 @@ The following gateways are provided by this package:
      * The parameter transactionId must be alpha-numeric and 8 to 32 characters in length
      */
 
-    $response = $gateway->purchase(array(
+    $response = $gateway->purchase([
         'amount' => '12.00',
         'transactionId' => '1234566789205067',
         'currency' => 'AUD',
         'returnUrl' => 'http://example.com/payment/response',
-    ))
+    ])
         ->send();
 
     if ($response->isRedirect()) {
@@ -261,13 +261,13 @@ The following gateways are provided by this package:
 
     $gateway->setTestMode(true);
 
-    $response = $gateway->completePurchase(array(
+    $response = $gateway->completePurchase([
         'amount' => '12.00',
         'transactionId' => '1234566789205067',
         'transactionReference' => '11fc42b0-bb7a-41a4-8b3c-096b3fd4d402',
         'currency' => 'AUD',
         'returnUrl' => 'http://example.com/payment/response',
-    ))
+    ])
         ->send();
 
     if ($response->isSuccessful()) {
