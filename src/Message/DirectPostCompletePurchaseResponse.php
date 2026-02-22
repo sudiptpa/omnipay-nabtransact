@@ -14,12 +14,12 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->summaryCode() && in_array($this->getCode(), ['00', '08', '11']);
+        return $this->summaryCode() && in_array($this->getCode(), ['00', '08', '11'], true);
     }
 
     public function summaryCode()
     {
-        return isset($this->data['summarycode']) && (int) $this->data['summarycode'] == 1;
+        return isset($this->data['summarycode']) && (int) $this->data['summarycode'] === 1;
     }
 
     /**
@@ -30,6 +30,8 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
         if (isset($this->data['restext'])) {
             return $this->data['restext'];
         }
+
+        return null;
     }
 
     /**
@@ -40,6 +42,8 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
         if (isset($this->data['rescode'])) {
             return $this->data['rescode'];
         }
+
+        return null;
     }
 
     /**
@@ -50,5 +54,7 @@ class DirectPostCompletePurchaseResponse extends AbstractResponse
         if (isset($this->data['txnid'])) {
             return $this->data['txnid'];
         }
+
+        return null;
     }
 }

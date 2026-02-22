@@ -17,4 +17,10 @@ class TransactionType
     const PREAUTH_RISK_MANAGEMENT_3DS_EMV3DS = 7;
 
     const STORE_ONLY = 8;
+
+    // DirectPost transaction type string variants from NAB docs.
+    const COMPLETE_PREAUTH = 'COMPLETE';
+    const REFUND = 'REFUND';
+    const REVERSAL = 'REVERSAL';
+    const ANTIFRAUD = 'ANTIFRAUD';
 }

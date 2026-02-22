@@ -29,7 +29,7 @@ class SecureXMLRiskPurchaseRequest extends SecureXMLAbstractRequest
 
     public function setIp($value)
     {
-        $this->setParameter('ip', $value);
+        return $this->setParameter('ip', $value);
     }
 
     public function getIp()
@@ -45,26 +45,30 @@ class SecureXMLRiskPurchaseRequest extends SecureXMLAbstractRequest
         $xml = $this->getBasePaymentXMLWithCard();
 
         $buyer = $xml->addChild('BuyerInfo');
-
-        $buyer->addChild('ip', $this->getIp('ip'));
+        $buyer->addChild('ip', $this->getIp());
 
         $card = $this->getCard();
 
         if ($firstName = $card->getFirstName()) {
             $buyer->addChild('firstName', $firstName);
         }
+
         if ($lastName = $card->getLastName()) {
-            $buyer->addChild('firstName', $lastName);
+            $buyer->addChild('lastName', $lastName);
         }
+
         if ($postCode = $card->getBillingPostcode()) {
             $buyer->addChild('zipcode', $postCode);
         }
+
         if ($city = $card->getBillingCity()) {
             $buyer->addChild('town', $city);
         }
+
         if ($country = $card->getBillingCountry()) {
             $buyer->addChild('billingCountry', $country);
         }
+
         if ($email = $card->getEmail()) {
             $buyer->addChild('emailAddress', $email);
         }

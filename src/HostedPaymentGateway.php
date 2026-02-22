@@ -9,6 +9,16 @@ use Omnipay\Common\AbstractGateway;
  */
 class HostedPaymentGateway extends AbstractGateway
 {
+    public function getDefaultParameters()
+    {
+        return [
+            'merchantId' => '',
+            'paymentAlertEmail' => '',
+            'returnUrlText' => '',
+            'testMode' => false,
+        ];
+    }
+
     /**
      * @param array $parameters
      *
@@ -30,6 +40,42 @@ class HostedPaymentGateway extends AbstractGateway
     public function getName()
     {
         return 'NAB Hosted Payment';
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentAlertEmail()
+    {
+        return $this->getParameter('paymentAlertEmail');
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return mixed
+     */
+    public function setPaymentAlertEmail($value)
+    {
+        return $this->setParameter('paymentAlertEmail', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnUrlText()
+    {
+        return $this->getParameter('returnUrlText');
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return mixed
+     */
+    public function setReturnUrlText($value)
+    {
+        return $this->setParameter('returnUrlText', $value);
     }
 
     /**
