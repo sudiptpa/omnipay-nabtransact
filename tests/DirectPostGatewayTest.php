@@ -8,7 +8,7 @@ use Omnipay\Tests\GatewayTestCase;
 
 class DirectPostGatewayTest extends GatewayTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -20,7 +20,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->authorize(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostAuthorizeRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostAuthorizeRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -28,7 +28,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->completeAuthorize(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -36,7 +36,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->purchase(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostPurchaseRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostPurchaseRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -44,7 +44,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->completePurchase(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostCompletePurchaseRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -60,14 +60,14 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->webhook(['merchant' => 'XYZ0010']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostWebhookRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostWebhookRequest::class, $request);
     }
 
     public function testStore()
     {
         $request = $this->gateway->store(['amount' => '0.00', 'returnUrl' => 'https://example.com/return']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostStoreRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostStoreRequest::class, $request);
         $this->assertSame('0.00', $request->getAmount());
     }
 
@@ -75,7 +75,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->capture(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostCaptureRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostCaptureRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -83,7 +83,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->refund(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostRefundRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostRefundRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -91,7 +91,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->void(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostReversalRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostReversalRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -99,7 +99,7 @@ class DirectPostGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->createEMV3DSOrder(['amount' => '10.00']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\EMV3DSOrderRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\EMV3DSOrderRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 

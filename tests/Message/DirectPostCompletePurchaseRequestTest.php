@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class DirectPostCompletePurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new DirectPostCompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
     }
 
@@ -56,7 +57,7 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
 
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\DirectPostCompletePurchaseResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\DirectPostCompletePurchaseResponse::class, $response);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
@@ -89,7 +90,7 @@ class DirectPostCompletePurchaseRequestTest extends TestCase
 
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\DirectPostCompletePurchaseResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\DirectPostCompletePurchaseResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());

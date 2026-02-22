@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class SecureXMLPurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new SecureXMLPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -33,7 +34,7 @@ class SecureXMLPurchaseRequestTest extends TestCase
         $response = $this->request->send();
         $data = $response->getData();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());

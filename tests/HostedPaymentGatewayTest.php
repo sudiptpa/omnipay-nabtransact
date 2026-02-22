@@ -6,7 +6,7 @@ use Omnipay\Tests\GatewayTestCase;
 
 class HostedPaymentGatewayTest extends GatewayTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -18,7 +18,7 @@ class HostedPaymentGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->purchase(['amount' => '10.00', 'transactionId' => 'ORDER-100']);
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\HostedPaymentPurchaseRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\HostedPaymentPurchaseRequest::class, $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 
@@ -26,6 +26,6 @@ class HostedPaymentGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->completePurchase();
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\HostedPaymentCompletePurchaseRequest', $request);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\HostedPaymentCompletePurchaseRequest::class, $request);
     }
 }

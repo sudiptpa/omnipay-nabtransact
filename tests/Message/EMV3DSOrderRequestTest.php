@@ -8,8 +8,9 @@ use Omnipay\Tests\TestCase;
 
 class EMV3DSOrderRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new EMV3DSOrderRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([

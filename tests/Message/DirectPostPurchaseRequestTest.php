@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class DirectPostPurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new DirectPostPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -36,7 +37,7 @@ class DirectPostPurchaseRequestTest extends TestCase
     {
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\DirectPostAuthorizeResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\DirectPostAuthorizeResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNull($response->getTransactionReference());

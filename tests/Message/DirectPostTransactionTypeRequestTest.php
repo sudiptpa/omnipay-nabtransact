@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class DirectPostTransactionTypeRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->purchaseRequest = new DirectPostPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->purchaseRequest->initialize([
             'merchantId' => 'XYZ0010',

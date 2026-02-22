@@ -8,8 +8,9 @@ use Omnipay\Tests\TestCase;
 
 class DirectPostReversalRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new DirectPostReversalRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([

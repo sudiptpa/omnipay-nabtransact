@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class HostedPaymentCompletePurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new HostedPaymentCompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
     }
 
@@ -22,7 +23,7 @@ class HostedPaymentCompletePurchaseRequestTest extends TestCase
 
         $response = $this->request->send();
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\HostedPaymentCompletePurchaseResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\HostedPaymentCompletePurchaseResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('00', $response->getCode());
         $this->assertSame('TXN-100', $response->getTransactionReference());

@@ -8,8 +8,9 @@ use Omnipay\Tests\TestCase;
 
 class DirectPostCaptureRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new DirectPostCaptureRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -46,7 +47,7 @@ class DirectPostCaptureRequestTest extends TestCase
 
         $response = $request->send();
 
-        $this->assertInstanceOf('\Omnipay\NABTransact\Message\DirectPostApiResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostApiResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('00', $response->getCode());
         $this->assertSame('Approved', $response->getMessage());

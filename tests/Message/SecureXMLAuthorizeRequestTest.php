@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class SecureXMLAuthorizeRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new SecureXMLAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -34,7 +35,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
 
         $data = $response->getData();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
@@ -53,7 +54,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->setMockHttpResponse('SecureXMLAuthorizeRequestFail.txt');
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
@@ -67,7 +68,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->setMockHttpResponse('SecureXMLAuthorizeRequestInsufficientFundsFail.txt');
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
@@ -81,7 +82,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->setMockHttpResponse('SecureXMLAuthorizeRequestInvalidMerchantFail.txt');
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
@@ -95,7 +96,7 @@ class SecureXMLAuthorizeRequestTest extends TestCase
         $this->setMockHttpResponse('SecureXMLAuthorizeRequestInvalidMerchantIDFail.txt');
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertFalse($response->isRedirect());

@@ -6,8 +6,9 @@ use Omnipay\Tests\TestCase;
 
 class SecureXMLRiskPurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new SecureXMLRiskPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
