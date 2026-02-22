@@ -3,6 +3,7 @@
 namespace Omnipay\NABTransact;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\NABTransact\Transport\TransportInterface;
 
 /**
  * NABTransact Secure XML Gateway.
@@ -69,6 +70,52 @@ class SecureXMLGateway extends AbstractGateway
     public function setTransactionPassword($value)
     {
         return $this->setParameter('transactionPassword', $value);
+    }
+
+    /**
+     * Optional custom transport for SecureXML requests.
+     *
+     * @param TransportInterface $value
+     *
+     * @return mixed
+     */
+    public function setTransport(TransportInterface $value)
+    {
+        return $this->setParameter('transport', $value);
+    }
+
+    /**
+     * @return TransportInterface|null
+     */
+    public function getTransport()
+    {
+        return $this->getParameter('transport');
+    }
+
+    /**
+     * Optional timeout in seconds for outbound verification calls.
+     *
+     * @param int $value
+     *
+     * @return mixed
+     */
+    public function setTimeoutSeconds($value)
+    {
+        return $this->setParameter('timeoutSeconds', (int) $value);
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTimeoutSeconds()
+    {
+        $timeout = $this->getParameter('timeoutSeconds');
+
+        if ($timeout === null) {
+            return null;
+        }
+
+        return (int) $timeout;
     }
 
     /**

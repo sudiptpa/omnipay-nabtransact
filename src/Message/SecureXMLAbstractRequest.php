@@ -2,6 +2,8 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\NABTransact\Transport\OmnipayHttpClientTransport;
+use Omnipay\NABTransact\Transport\TransportInterface;
 use SimpleXMLElement;
 
 /**
@@ -64,8 +66,6 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
      */
     public function getMessageId()
     {
-        $messageId = $this->getParameter('messageId');
-
         if (!$this->getParameter('messageId')) {
             $this->setMessageId($this->generateMessageId());
         }
@@ -73,11 +73,31 @@ abstract class SecureXMLAbstractRequest extends AbstractRequest
         return $this->getParameter('messageId');
     }
 
+    /**
+     * @return TransportInterface
+     */
+    protected function resolveTransport()
+    {
+        $transport = $this->getTransport();
+
+        if ($transport instanceof TransportInterface) {
+            return $transport;
+        }
+
+        return new OmnipayHttpClientTransport($this->httpClient);
+    }
+
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), [], $data->asXML());
+        $response = $this->resolveTransport()->send(
+            'POST',
+            $this->getEndpoint(),
+            [],
+            $data->asXML(),
+            $this->getTimeoutSeconds()
+        );
 
-        $xml = new SimpleXMLElement($httpResponse->getBody()->getContents());
+        $xml = new SimpleXMLElement($response->getBody());
 
         return $this->response = new SecureXMLResponse($this, $xml);
     }
