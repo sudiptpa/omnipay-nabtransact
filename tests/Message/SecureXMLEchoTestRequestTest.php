@@ -2,12 +2,13 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class SecureXMLEchoTestRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new SecureXMLEchoTestRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -19,12 +20,11 @@ class SecureXMLEchoTestRequestTest extends TestCase
 
     public function testSuccess()
     {
-        $this->setMockHttpResponse('SecureXMLEchoTestRequestSuccess.txt');
+        $this->queueFixtureResponse('SecureXMLEchoTestRequestSuccess.txt');
 
         $response = $this->request->send();
-        $data = $response->getData();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\SecureXMLResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\SecureXMLResponse::class, $response);
         $this->assertSame('Normal', $response->getMessage());
         $this->assertFalse($response->isRedirect());
         $this->assertSame('000', $response->getStatusCode());

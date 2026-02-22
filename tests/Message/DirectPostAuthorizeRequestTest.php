@@ -2,12 +2,13 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class DirectPostAuthorizeRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new DirectPostAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -36,7 +37,7 @@ class DirectPostAuthorizeRequestTest extends TestCase
     {
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\DirectPostAuthorizeResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\DirectPostAuthorizeResponse::class, $response);
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
         $this->assertNull($response->getTransactionReference());

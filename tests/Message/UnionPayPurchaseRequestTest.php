@@ -2,12 +2,13 @@
 
 namespace Omnipay\NABTransact\Message;
 
-use Omnipay\Tests\TestCase;
+use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class UnionPayPurchaseRequestTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->request = new UnionPayPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
@@ -31,7 +32,7 @@ class UnionPayPurchaseRequestTest extends TestCase
     {
         $response = $this->request->send();
 
-        $this->assertInstanceOf('Omnipay\NABTransact\Message\UnionPayPurchaseResponse', $response);
+        $this->assertInstanceOf(\Omnipay\NABTransact\Message\UnionPayPurchaseResponse::class, $response);
 
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());

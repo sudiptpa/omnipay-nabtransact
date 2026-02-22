@@ -2,6 +2,9 @@
 
 namespace Omnipay\NABTransact;
 
+use Omnipay\NABTransact\Message\UnionPayCompletePurchaseRequest;
+use Omnipay\NABTransact\Message\UnionPayPurchaseRequest;
+
 /**
  * NABTransact UnionPay Gateway.
  */
@@ -19,7 +22,10 @@ class UnionPayGateway extends DirectPostGateway
      */
     public function purchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\UnionPayPurchaseRequest', $parameters);
+        $request = $this->createRequest(UnionPayPurchaseRequest::class, $parameters);
+        /** @var UnionPayPurchaseRequest $request */
+
+        return $request;
     }
 
     /**
@@ -29,6 +35,9 @@ class UnionPayGateway extends DirectPostGateway
      */
     public function completePurchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\NABTransact\Message\UnionPayCompletePurchaseRequest', $parameters);
+        $request = $this->createRequest(UnionPayCompletePurchaseRequest::class, $parameters);
+        /** @var UnionPayCompletePurchaseRequest $request */
+
+        return $request;
     }
 }

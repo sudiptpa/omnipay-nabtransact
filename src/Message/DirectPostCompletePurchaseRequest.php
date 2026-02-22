@@ -10,7 +10,7 @@ use Omnipay\Common\Exception\InvalidRequestException;
 class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
 {
     /**
-     * @return array|Exception
+     * @return array<string,mixed>
      */
     public function getData()
     {
@@ -24,7 +24,9 @@ class DirectPostCompletePurchaseRequest extends DirectPostAbstractRequest
     }
 
     /**
-     * @param $data
+     * @param array<string,mixed> $data
+     *
+     * @return string
      */
     public function generateResponseFingerprint($data)
     {

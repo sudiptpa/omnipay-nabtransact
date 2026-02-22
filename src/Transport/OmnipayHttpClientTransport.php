@@ -1,0 +1,44 @@
+<?php
+
+namespace Omnipay\NABTransact\Transport;
+
+use Omnipay\Common\Http\ClientInterface;
+
+final class OmnipayHttpClientTransport implements TransportInterface
+{
+    /**
+     * @var ClientInterface
+     */
+    private $httpClient;
+
+    /**
+     * @param ClientInterface $httpClient
+     */
+    public function __construct(ClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @param string               $method
+     * @param string               $url
+     * @param array<string,string> $headers
+     * @param string               $body
+     * @param int                  $timeoutSeconds
+     *
+     * @return TransportResponse
+     */
+    public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
+    {
+        $response = $this->httpClient->request(strtoupper($method), $url, $headers, $body);
+
+        $statusCode = method_exists($response, 'getStatusCode') ? (int) $response->getStatusCode() : 200;
+        $responseBody = '';
+
+        if (method_exists($response, 'getBody')) {
+            $responseBody = (string) $response->getBody();
+        }
+
+        return new TransportResponse($statusCode, $responseBody);
+    }
+}
