@@ -12,10 +12,10 @@ class HostedPaymentGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'merchantId' => '',
+            'merchantId'        => '',
             'paymentAlertEmail' => '',
-            'returnUrlText' => '',
-            'testMode' => false,
+            'returnUrlText'     => '',
+            'testMode'          => false,
         ];
     }
 

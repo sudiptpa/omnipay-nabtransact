@@ -64,16 +64,16 @@ class TestCase extends PHPUnitTestCase
     protected function getValidCard(): array
     {
         return [
-            'firstName' => 'Example',
-            'lastName' => 'User',
-            'number' => '4444333322221111',
+            'firstName'   => 'Example',
+            'lastName'    => 'User',
+            'number'      => '4444333322221111',
             'expiryMonth' => '12',
-            'expiryYear' => '2030',
-            'cvv' => '123',
-            'address1' => '123 Test Street',
-            'city' => 'Billstown',
-            'postcode' => '12345',
-            'country' => 'US',
+            'expiryYear'  => '2030',
+            'cvv'         => '123',
+            'address1'    => '123 Test Street',
+            'city'        => 'Billstown',
+            'postcode'    => '12345',
+            'country'     => 'US',
         ];
     }
 }

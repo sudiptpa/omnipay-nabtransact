@@ -2,9 +2,9 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\NABTransact\Tests\Support\TestCase;
 use Omnipay\NABTransact\Transport\TransportInterface;
 use Omnipay\NABTransact\Transport\TransportResponse;
-use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class DirectPostCaptureRequestTest extends TestCase
 {
@@ -14,11 +14,11 @@ class DirectPostCaptureRequestTest extends TestCase
         $this->request = new DirectPostCaptureRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
-            'transactionPassword' => 'abcd1234',
-            'amount' => '12.00',
-            'currency' => 'AUD',
-            'transactionId' => 'CAPTURE-ORDER-100',
+            'merchantId'           => 'XYZ0010',
+            'transactionPassword'  => 'abcd1234',
+            'amount'               => '12.00',
+            'currency'             => 'AUD',
+            'transactionId'        => 'CAPTURE-ORDER-100',
             'transactionReference' => 'NAB-ORIG-100',
         ]);
     }
@@ -38,7 +38,7 @@ class DirectPostCaptureRequestTest extends TestCase
     {
         $request = $this->request;
 
-        $request->setTransport(new class implements TransportInterface {
+        $request->setTransport(new class() implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(200, 'rescode=00&restext=Approved&txnid=CAPTURED-1');

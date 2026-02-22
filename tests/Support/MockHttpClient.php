@@ -40,10 +40,10 @@ final class MockHttpClient implements ClientInterface
     public function request($method, $uri, array $headers = [], $body = null, $protocolVersion = '1.1'): ResponseInterface
     {
         $this->requests[] = [
-            'method' => (string) $method,
-            'uri' => (string) $uri,
-            'headers' => $headers,
-            'body' => $body,
+            'method'          => (string) $method,
+            'uri'             => (string) $uri,
+            'headers'         => $headers,
+            'body'            => $body,
             'protocolVersion' => (string) $protocolVersion,
         ];
 

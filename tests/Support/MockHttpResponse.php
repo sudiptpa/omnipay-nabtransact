@@ -39,8 +39,7 @@ final class MockHttpResponse implements ResponseInterface
         $body = '',
         string $protocolVersion = '1.1',
         string $reasonPhrase = ''
-    )
-    {
+    ) {
         $this->statusCode = $statusCode;
         $this->headers = [];
 

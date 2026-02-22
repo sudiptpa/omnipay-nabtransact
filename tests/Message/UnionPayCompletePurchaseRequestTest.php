@@ -9,10 +9,10 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
     public function testUnionPayCompletePurchaseSuccess()
     {
         $data = [
-            'restext' => 'Approved',
-            'rescode' => '00',
+            'restext'     => 'Approved',
+            'rescode'     => '00',
             'summarycode' => '1',
-            'txnid' => '12345',
+            'txnid'       => '12345',
         ];
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);
@@ -29,10 +29,10 @@ class UnionPayCompletePurchaseRequestTest extends TestCase
     public function testUnionPayCompletePurchaseFailure()
     {
         $data = [
-            'restext' => 'Error',
-            'txnid' => '12345',
+            'restext'     => 'Error',
+            'txnid'       => '12345',
             'summarycode' => '3',
-            'rescode' => '06',
+            'rescode'     => '06',
         ];
 
         $response = new UnionPayCompletePurchaseResponse($this->getMockRequest(), $data);

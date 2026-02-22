@@ -2,9 +2,9 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\NABTransact\Tests\Support\TestCase;
 use Omnipay\NABTransact\Transport\TransportInterface;
 use Omnipay\NABTransact\Transport\TransportResponse;
-use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class DirectPostRefundRequestTest extends TestCase
 {
@@ -14,10 +14,10 @@ class DirectPostRefundRequestTest extends TestCase
         $this->request = new DirectPostRefundRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
-            'transactionPassword' => 'abcd1234',
-            'amount' => '5.00',
-            'transactionId' => 'REFUND-ORDER-100',
+            'merchantId'           => 'XYZ0010',
+            'transactionPassword'  => 'abcd1234',
+            'amount'               => '5.00',
+            'transactionId'        => 'REFUND-ORDER-100',
             'transactionReference' => 'NAB-TXN-100',
         ]);
     }
@@ -35,7 +35,7 @@ class DirectPostRefundRequestTest extends TestCase
     {
         $request = $this->request;
 
-        $request->setTransport(new class implements TransportInterface {
+        $request->setTransport(new class() implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(200, '{"rescode":"00","restext":"Refunded","txnid":"REF-1"}');

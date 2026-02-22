@@ -11,37 +11,37 @@ class DirectPostTransactionTypeRequestTest extends TestCase
         parent::setUp();
         $this->purchaseRequest = new DirectPostPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->purchaseRequest->initialize([
-            'merchantId' => 'XYZ0010',
-            'transactionPassword' => 'abcd1234',
-            'amount' => '12.00',
-            'returnUrl' => 'https://www.example.com/return',
-            'transactionId' => 'ORDER-100',
+            'merchantId'           => 'XYZ0010',
+            'transactionPassword'  => 'abcd1234',
+            'amount'               => '12.00',
+            'returnUrl'            => 'https://www.example.com/return',
+            'transactionId'        => 'ORDER-100',
             'transactionReference' => 'ORDER-REF-100',
-            'card' => [
-                'firstName' => 'Example',
-                'lastName' => 'User',
-                'number' => '4444333322221111',
+            'card'                 => [
+                'firstName'   => 'Example',
+                'lastName'    => 'User',
+                'number'      => '4444333322221111',
                 'expiryMonth' => '12',
-                'expiryYear' => '2030',
-                'cvv' => '123',
+                'expiryYear'  => '2030',
+                'cvv'         => '123',
             ],
         ]);
 
         $this->authorizeRequest = new DirectPostAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->authorizeRequest->initialize([
-            'merchantId' => 'XYZ0010',
-            'transactionPassword' => 'abcd1234',
-            'amount' => '12.00',
-            'returnUrl' => 'https://www.example.com/return',
-            'transactionId' => 'ORDER-101',
+            'merchantId'           => 'XYZ0010',
+            'transactionPassword'  => 'abcd1234',
+            'amount'               => '12.00',
+            'returnUrl'            => 'https://www.example.com/return',
+            'transactionId'        => 'ORDER-101',
             'transactionReference' => 'ORDER-REF-101',
-            'card' => [
-                'firstName' => 'Example',
-                'lastName' => 'User',
-                'number' => '4444333322221111',
+            'card'                 => [
+                'firstName'   => 'Example',
+                'lastName'    => 'User',
+                'number'      => '4444333322221111',
                 'expiryMonth' => '12',
-                'expiryYear' => '2030',
-                'cvv' => '123',
+                'expiryYear'  => '2030',
+                'cvv'         => '123',
             ],
         ]);
     }

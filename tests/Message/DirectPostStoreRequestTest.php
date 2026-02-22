@@ -12,15 +12,15 @@ class DirectPostStoreRequestTest extends TestCase
         $this->request = new DirectPostStoreRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
+            'merchantId'          => 'XYZ0010',
             'transactionPassword' => 'abcd1234',
-            'returnUrl' => 'https://www.example.com/return',
-            'transactionId' => 'STORE-ORDER-100',
-            'card' => [
-                'number' => '4444333322221111',
+            'returnUrl'           => 'https://www.example.com/return',
+            'transactionId'       => 'STORE-ORDER-100',
+            'card'                => [
+                'number'      => '4444333322221111',
                 'expiryMonth' => '12',
-                'expiryYear' => '2030',
-                'cvv' => '123',
+                'expiryYear'  => '2030',
+                'cvv'         => '123',
             ],
         ]);
     }

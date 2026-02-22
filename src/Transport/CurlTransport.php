@@ -33,12 +33,12 @@ final class CurlTransport implements TransportInterface
         }
 
         $options = [
-            CURLOPT_URL => $url,
+            CURLOPT_URL            => $url,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST => strtoupper($method),
-            CURLOPT_TIMEOUT => max(1, (int) $timeoutSeconds),
-            CURLOPT_HTTPHEADER => $formattedHeaders,
-            CURLOPT_POSTFIELDS => $body,
+            CURLOPT_CUSTOMREQUEST  => strtoupper($method),
+            CURLOPT_TIMEOUT        => max(1, (int) $timeoutSeconds),
+            CURLOPT_HTTPHEADER     => $formattedHeaders,
+            CURLOPT_POSTFIELDS     => $body,
         ];
 
         curl_setopt_array($handle, $options);
@@ -48,6 +48,7 @@ final class CurlTransport implements TransportInterface
         if ($responseBody === false) {
             $message = curl_error($handle);
             curl_close($handle);
+
             throw new RuntimeException('cURL transport request failed: '.$message);
         }
 

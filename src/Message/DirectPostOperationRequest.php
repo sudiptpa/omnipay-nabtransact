@@ -23,12 +23,12 @@ abstract class DirectPostOperationRequest extends DirectPostAbstractRequest
         $this->validate('merchantId', 'transactionPassword', 'amount', 'transactionId', 'transactionReference');
 
         $data = [
-            'EPS_MERCHANT' => $this->getMerchantId(),
-            'EPS_TXNTYPE' => $this->resolveTxnType(),
-            'EPS_REFERENCEID' => $this->getTransactionId(),
-            'EPS_AMOUNT' => $this->getAmount(),
+            'EPS_MERCHANT'                => $this->getMerchantId(),
+            'EPS_TXNTYPE'                 => $this->resolveTxnType(),
+            'EPS_REFERENCEID'             => $this->getTransactionId(),
+            'EPS_AMOUNT'                  => $this->getAmount(),
             $this->targetTransactionField => $this->getTransactionReference(),
-            'EPS_TIMESTAMP' => gmdate('YmdHis'),
+            'EPS_TIMESTAMP'               => gmdate('YmdHis'),
         ];
 
         if ($currency = $this->getCurrency()) {
@@ -98,7 +98,7 @@ abstract class DirectPostOperationRequest extends DirectPostAbstractRequest
 
         $parsed = [
             'http_status_code' => $response->getStatusCode(),
-            'raw' => $body,
+            'raw'              => $body,
         ];
 
         if ($body === '') {

@@ -2,9 +2,9 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\NABTransact\Tests\Support\TestCase;
 use Omnipay\NABTransact\Transport\TransportInterface;
 use Omnipay\NABTransact\Transport\TransportResponse;
-use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class EMV3DSOrderRequestTest extends TestCase
 {
@@ -14,11 +14,11 @@ class EMV3DSOrderRequestTest extends TestCase
         $this->request = new EMV3DSOrderRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
-            'transactionPassword' => 'abcd1234',
-            'amount' => '12.00',
-            'currency' => 'AUD',
-            'clientIp' => '1.2.3.4',
+            'merchantId'           => 'XYZ0010',
+            'transactionPassword'  => 'abcd1234',
+            'amount'               => '12.00',
+            'currency'             => 'AUD',
+            'clientIp'             => '1.2.3.4',
             'transactionReference' => 'EMV-ORDER-100',
         ]);
     }
@@ -81,7 +81,7 @@ class EMV3DSOrderRequestTest extends TestCase
     public function testSendHandlesInvalidJsonResponse()
     {
         $request = $this->request;
-        $request->setTransport(new class implements TransportInterface {
+        $request->setTransport(new class() implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(500, 'Internal Error');

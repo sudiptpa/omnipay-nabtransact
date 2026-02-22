@@ -2,9 +2,9 @@
 
 namespace Omnipay\NABTransact\Message;
 
+use Omnipay\NABTransact\Tests\Support\TestCase;
 use Omnipay\NABTransact\Transport\TransportInterface;
 use Omnipay\NABTransact\Transport\TransportResponse;
-use Omnipay\NABTransact\Tests\Support\TestCase;
 
 class SecureXMLTransportRequestTest extends TestCase
 {
@@ -13,16 +13,16 @@ class SecureXMLTransportRequestTest extends TestCase
         $request = new SecureXMLPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $request->initialize([
-            'merchantId' => 'XYZ0010',
+            'merchantId'          => 'XYZ0010',
             'transactionPassword' => 'abcd1234',
-            'testMode' => true,
-            'amount' => '12.00',
-            'transactionId' => '1234',
-            'card' => [
-                'number' => '4444333322221111',
-                'expiryMonth' => '12',
-                'expiryYear' => '2030',
-                'cvv' => '123',
+            'testMode'            => true,
+            'amount'              => '12.00',
+            'transactionId'       => '1234',
+            'card'                => [
+                'number'         => '4444333322221111',
+                'expiryMonth'    => '12',
+                'expiryYear'     => '2030',
+                'cvv'            => '123',
                 'cardHolderName' => 'Sujip Thapa',
             ],
         ]);
@@ -43,7 +43,9 @@ class SecureXMLTransportRequestTest extends TestCase
                 $this->capture->method = $method;
                 $this->capture->url = $url;
 
-                return new TransportResponse(200, <<<XML
+                return new TransportResponse(
+                    200,
+                    <<<'XML'
 <NABTransactMessage>
   <MessageInfo><messageTimestamp>20260222000000000+0000</messageTimestamp></MessageInfo>
   <Status><statusCode>000</statusCode><statusDescription>Normal</statusDescription></Status>

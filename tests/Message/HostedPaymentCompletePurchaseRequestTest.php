@@ -16,9 +16,9 @@ class HostedPaymentCompletePurchaseRequestTest extends TestCase
     {
         $this->getHttpRequest()->query->replace([
             'summarycode' => '1',
-            'rescode' => '00',
-            'restext' => 'Approved',
-            'txnid' => 'TXN-100',
+            'rescode'     => '00',
+            'restext'     => 'Approved',
+            'txnid'       => 'TXN-100',
         ]);
 
         $response = $this->request->send();
@@ -33,9 +33,9 @@ class HostedPaymentCompletePurchaseRequestTest extends TestCase
     {
         $this->getHttpRequest()->request->replace([
             'summarycode' => '3',
-            'rescode' => '06',
-            'restext' => 'Declined',
-            'txnid' => 'TXN-101',
+            'rescode'     => '06',
+            'restext'     => 'Declined',
+            'txnid'       => 'TXN-101',
         ]);
 
         $response = $this->request->send();

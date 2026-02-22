@@ -11,7 +11,7 @@ class UnionPayCompletePurchaseResponse extends DirectPostCompletePurchaseRespons
 {
     /**
      * @param RequestInterface $request
-     * @param $data
+     * @param                  $data
      */
     public function __construct(RequestInterface $request, $data)
     {

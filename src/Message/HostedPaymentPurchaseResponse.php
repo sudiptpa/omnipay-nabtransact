@@ -18,8 +18,8 @@ class HostedPaymentPurchaseResponse extends AbstractResponse implements Redirect
 
     /**
      * @param RequestInterface $request
-     * @param $data
-     * @param $redirectUrl
+     * @param                  $data
+     * @param                  $redirectUrl
      */
     public function __construct(RequestInterface $request, $data, $redirectUrl)
     {

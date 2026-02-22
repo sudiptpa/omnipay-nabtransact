@@ -28,13 +28,13 @@ class EMV3DSOrderRequest extends AbstractRequest
         $this->validate('merchantId', 'transactionPassword', 'amount', 'currency', 'clientIp', 'transactionReference');
 
         return [
-            'amount' => $this->getAmountInteger(),
-            'currency' => $this->getCurrency(),
-            'ip' => $this->getClientIp(),
-            'merchantId' => $this->getMerchantId(),
+            'amount'                 => $this->getAmountInteger(),
+            'currency'               => $this->getCurrency(),
+            'ip'                     => $this->getClientIp(),
+            'merchantId'             => $this->getMerchantId(),
             'merchantOrderReference' => $this->getTransactionReference(),
-            'orderType' => $this->getOrderType(),
-            'intents' => $this->getIntents(),
+            'orderType'              => $this->getOrderType(),
+            'intents'                => $this->getIntents(),
         ];
     }
 
@@ -104,7 +104,7 @@ class EMV3DSOrderRequest extends AbstractRequest
             'POST',
             $this->getEndpoint(),
             [
-                'Content-Type' => 'application/json; charset=UTF-8',
+                'Content-Type'  => 'application/json; charset=UTF-8',
                 'Authorization' => 'Basic '.$authorization,
             ],
             $payload,

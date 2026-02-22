@@ -12,14 +12,14 @@ class HostedPaymentPurchaseRequestTest extends TestCase
         $this->request = new HostedPaymentPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
+            'merchantId'        => 'XYZ0010',
             'paymentAlertEmail' => 'merchant@example.com',
-            'amount' => '10.00',
-            'currency' => 'AUD',
-            'transactionId' => 'ORDER-123',
-            'returnUrl' => 'https://example.com/return',
-            'notifyUrl' => 'https://example.com/notify',
-            'returnUrlText' => 'Return',
+            'amount'            => '10.00',
+            'currency'          => 'AUD',
+            'transactionId'     => 'ORDER-123',
+            'returnUrl'         => 'https://example.com/return',
+            'notifyUrl'         => 'https://example.com/notify',
+            'returnUrlText'     => 'Return',
         ]);
     }
 

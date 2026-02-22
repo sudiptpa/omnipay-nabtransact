@@ -11,11 +11,11 @@ class DirectPostApiResponseTest extends TestCase
         $request = new DirectPostRefundRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $response = new DirectPostApiResponse($request, [
-            'rescode' => '00',
-            'restext' => 'Approved',
-            'txnid' => 'TXN-100',
+            'rescode'          => '00',
+            'restext'          => 'Approved',
+            'txnid'            => 'TXN-100',
             'http_status_code' => 500,
-            'raw' => 'rescode=00',
+            'raw'              => 'rescode=00',
         ]);
 
         $this->assertTrue($response->isSuccessful());
@@ -32,7 +32,7 @@ class DirectPostApiResponseTest extends TestCase
 
         $response = new DirectPostApiResponse($request, [
             'http_status_code' => 200,
-            'message' => 'OK',
+            'message'          => 'OK',
         ]);
 
         $this->assertTrue($response->isSuccessful());

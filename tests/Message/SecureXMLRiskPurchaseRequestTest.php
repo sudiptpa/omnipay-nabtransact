@@ -12,23 +12,23 @@ class SecureXMLRiskPurchaseRequestTest extends TestCase
         $this->request = new SecureXMLRiskPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->initialize([
-            'merchantId' => 'XYZ0010',
+            'merchantId'          => 'XYZ0010',
             'transactionPassword' => 'abcd1234',
-            'testMode' => true,
-            'amount' => '12.00',
-            'transactionId' => '1234',
-            'ip' => '1.1.1.1',
-            'card' => [
-                'firstName' => 'Example',
-                'lastName' => 'User',
-                'number' => '4444333322221111',
-                'expiryMonth' => '12',
-                'expiryYear' => '2030',
-                'cvv' => '123',
-                'email' => 'example@example.com',
+            'testMode'            => true,
+            'amount'              => '12.00',
+            'transactionId'       => '1234',
+            'ip'                  => '1.1.1.1',
+            'card'                => [
+                'firstName'       => 'Example',
+                'lastName'        => 'User',
+                'number'          => '4444333322221111',
+                'expiryMonth'     => '12',
+                'expiryYear'      => '2030',
+                'cvv'             => '123',
+                'email'           => 'example@example.com',
                 'billingPostcode' => '12345',
-                'billingCity' => 'Billstown',
-                'billingCountry' => 'US',
+                'billingCity'     => 'Billstown',
+                'billingCountry'  => 'US',
             ],
         ]);
     }
