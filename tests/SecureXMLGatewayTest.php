@@ -2,6 +2,8 @@
 
 namespace Omnipay\NABTransact;
 
+use Omnipay\NABTransact\Transport\TransportInterface;
+use Omnipay\NABTransact\Transport\TransportResponse;
 use Omnipay\Tests\GatewayTestCase;
 
 class SecureXMLGatewayTest extends GatewayTestCase
@@ -56,7 +58,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLRiskPurchaseRequest', $request);
         $this->assertSame('25.00', $request->getAmount());
         $this->assertContains(
-            '<BuyerInfo><ip>1.1.1.1</ip><firstName>Example</firstName><firstName>User</firstName><zipcode>12345</zipcode><town>Billstown</town><billingCountry>US</billingCountry></BuyerInfo>',
+            '<BuyerInfo><ip>1.1.1.1</ip><firstName>Example</firstName><lastName>User</lastName><zipcode>12345</zipcode><town>Billstown</town><billingCountry>US</billingCountry></BuyerInfo>',
             (string) $request->getData()->asXml()
         );
     }
@@ -68,5 +70,24 @@ class SecureXMLGatewayTest extends GatewayTestCase
         $this->assertInstanceOf('\Omnipay\NABTransact\Message\SecureXMLRefundRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
         $this->assertSame('Order-YKHU67', $request->getTransactionId());
+    }
+
+    public function testTransportAndTimeoutArePassedToRequest()
+    {
+        $transport = new class implements TransportInterface {
+            public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
+            {
+                return new TransportResponse(200, '<NABTransactMessage><Status><statusCode>000</statusCode><statusDescription>Normal</statusDescription></Status><RequestType>Echo</RequestType></NABTransactMessage>');
+            }
+        };
+
+        $gateway = clone $this->gateway;
+        $gateway->setTransport($transport);
+        $gateway->setTimeoutSeconds(25);
+
+        $request = $gateway->echoTest();
+
+        $this->assertSame($transport, $request->getTransport());
+        $this->assertSame(25, $request->getTimeoutSeconds());
     }
 }
