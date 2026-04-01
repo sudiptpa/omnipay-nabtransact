@@ -4,6 +4,12 @@
 
 [![CI](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml/badge.svg)](https://github.com/sudiptpa/omnipay-nabtransact/actions/workflows/ci.yml) [![Latest Version](https://img.shields.io/packagist/v/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact) [![Downloads](https://img.shields.io/packagist/dt/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact) [![License](https://img.shields.io/packagist/l/sudiptpa/omnipay-nabtransact)](https://packagist.org/packages/sudiptpa/omnipay-nabtransact)
 
+---
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/sudiptpa)
+
+If this package has been useful to you, GitHub Sponsors is a simple way to support ongoing maintenance, improvements, and future releases.
+
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements NAB Transact support for Omnipay.
 
@@ -85,7 +91,6 @@ The following gateways are provided by this package:
     }
 
 ```
-
 
 ### NAB Transact SecureXML API with Risk Management
 
@@ -379,7 +384,6 @@ you can subscribe to.
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/sudiptpa/nabtransact/issues),
 or better yet, fork the library and submit a pull request.
-
 
 ## Architecture
 
