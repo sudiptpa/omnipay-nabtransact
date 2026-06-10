@@ -47,15 +47,15 @@ class TestCase extends PHPUnitTestCase
 
     protected function fixtureContents(string $filename): string
     {
-        $path = dirname(__DIR__).'/Mock/'.$filename;
+        $path = dirname(__DIR__) . '/Mock/' . $filename;
 
         if (!is_file($path)) {
-            $this->fail('Missing mock HTTP fixture: '.$filename);
+            $this->fail('Missing mock HTTP fixture: ' . $filename);
         }
 
         $body = file_get_contents($path);
         if ($body === false) {
-            $this->fail('Unable to read mock HTTP fixture: '.$filename);
+            $this->fail('Unable to read mock HTTP fixture: ' . $filename);
         }
 
         // Legacy fixture files may contain an HTTP status line and headers.

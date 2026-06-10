@@ -35,7 +35,7 @@ class DirectPostReversalRequestTest extends TestCase
     {
         $request = $this->request;
 
-        $request->setTransport(new class() implements TransportInterface {
+        $request->setTransport(new class () implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(200, '<response><rescode>00</rescode><restext>Reversed</restext><txnid>VOID-1</txnid></response>');

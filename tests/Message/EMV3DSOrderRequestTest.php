@@ -42,7 +42,7 @@ class EMV3DSOrderRequestTest extends TestCase
 
         $request = $this->request;
         $request->setTimeoutSeconds(15);
-        $request->setTransport(new class($capture) implements TransportInterface {
+        $request->setTransport(new class ($capture) implements TransportInterface {
             private $capture;
 
             public function __construct($capture)
@@ -81,7 +81,7 @@ class EMV3DSOrderRequestTest extends TestCase
     public function testSendHandlesInvalidJsonResponse()
     {
         $request = $this->request;
-        $request->setTransport(new class() implements TransportInterface {
+        $request->setTransport(new class () implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(500, 'Internal Error');

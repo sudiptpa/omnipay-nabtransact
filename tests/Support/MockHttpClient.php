@@ -49,7 +49,7 @@ final class MockHttpClient implements ClientInterface
         ];
 
         if (empty($this->responses)) {
-            throw new RuntimeException('No queued mock HTTP response for '.$method.' '.$uri);
+            throw new RuntimeException('No queued mock HTTP response for ' . $method . ' ' . $uri);
         }
 
         $response = array_shift($this->responses);

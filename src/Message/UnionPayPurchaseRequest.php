@@ -29,8 +29,8 @@ class UnionPayPurchaseRequest extends DirectPostAbstractRequest
             throw new InvalidRequestException('UPOP does not support EMV 3DS transaction types.');
         }
 
-        if ($this->getCurrency() !== null) {
-            $currency = strtoupper((string) $this->getCurrency());
+        if ($currency = $this->getCurrency()) {
+            $currency = strtoupper((string) $currency);
             if (!in_array($currency, ['AUD', 'CNY'], true)) {
                 throw new InvalidRequestException('UPOP only supports AUD or CNY currencies.');
             }
@@ -50,7 +50,7 @@ class UnionPayPurchaseRequest extends DirectPostAbstractRequest
      */
     public function sendData($data)
     {
-        $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
+        $redirectUrl = $this->getEndpoint() . '?' . http_build_query($data);
 
         return $this->response = new UnionPayPurchaseResponse($this, $data, $redirectUrl);
     }

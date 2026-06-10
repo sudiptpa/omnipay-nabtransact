@@ -38,7 +38,7 @@ class DirectPostCaptureRequestTest extends TestCase
     {
         $request = $this->request;
 
-        $request->setTransport(new class() implements TransportInterface {
+        $request->setTransport(new class () implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(200, 'rescode=00&restext=Approved&txnid=CAPTURED-1');

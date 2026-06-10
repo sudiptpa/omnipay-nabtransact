@@ -98,14 +98,14 @@ class EMV3DSOrderRequest extends AbstractRequest
             throw new InvalidRequestException('Unable to encode EMV 3DS order payload.');
         }
 
-        $authorization = base64_encode($this->getMerchantId().':'.$this->getTransactionPassword());
+        $authorization = base64_encode($this->getMerchantId() . ':' . $this->getTransactionPassword());
 
         $response = $transport->send(
             'POST',
             $this->getEndpoint(),
             [
                 'Content-Type'  => 'application/json; charset=UTF-8',
-                'Authorization' => 'Basic '.$authorization,
+                'Authorization' => 'Basic ' . $authorization,
             ],
             $payload,
             $this->getTimeoutSeconds()

@@ -96,7 +96,7 @@ final class MockStream implements StreamInterface
             $suffix = substr($this->content, $suffixStart);
         }
 
-        $this->content = $prefix.$string.$suffix;
+        $this->content = $prefix . $string . $suffix;
         $this->position += strlen($string);
 
         return strlen($string);
@@ -142,4 +142,3 @@ final class MockStream implements StreamInterface
         return null;
     }
 }
-

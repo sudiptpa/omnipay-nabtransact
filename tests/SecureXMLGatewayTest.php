@@ -74,7 +74,7 @@ class SecureXMLGatewayTest extends GatewayTestCase
 
     public function testTransportAndTimeoutArePassedToRequest()
     {
-        $transport = new class() implements TransportInterface {
+        $transport = new class () implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(200, '<NABTransactMessage><Status><statusCode>000</statusCode><statusDescription>Normal</statusDescription></Status><RequestType>Echo</RequestType></NABTransactMessage>');

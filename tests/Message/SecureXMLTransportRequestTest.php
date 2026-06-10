@@ -29,7 +29,7 @@ class SecureXMLTransportRequestTest extends TestCase
 
         $capture = (object) ['called' => false, 'method' => null, 'url' => null];
 
-        $transport = new class($capture) implements TransportInterface {
+        $transport = new class ($capture) implements TransportInterface {
             private $capture;
 
             public function __construct($capture)

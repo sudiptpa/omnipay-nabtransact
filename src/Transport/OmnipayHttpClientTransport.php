@@ -32,13 +32,9 @@ final class OmnipayHttpClientTransport implements TransportInterface
     {
         $response = $this->httpClient->request(strtoupper($method), $url, $headers, $body);
 
-        $statusCode = method_exists($response, 'getStatusCode') ? (int) $response->getStatusCode() : 200;
-        $responseBody = '';
-
-        if (method_exists($response, 'getBody')) {
-            $responseBody = (string) $response->getBody();
-        }
-
-        return new TransportResponse($statusCode, $responseBody);
+        return new TransportResponse(
+            (int) $response->getStatusCode(),
+            (string) $response->getBody()
+        );
     }
 }

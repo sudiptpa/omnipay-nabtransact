@@ -25,7 +25,7 @@ final class CurlTransport implements TransportInterface
 
         $formattedHeaders = [];
         foreach ($headers as $name => $value) {
-            $formattedHeaders[] = $name.': '.$value;
+            $formattedHeaders[] = $name . ': ' . $value;
         }
 
         $options = [
@@ -45,7 +45,7 @@ final class CurlTransport implements TransportInterface
             $message = curl_error($handle);
             curl_close($handle);
 
-            throw new RuntimeException('cURL transport request failed: '.$message);
+            throw new RuntimeException('cURL transport request failed: ' . $message);
         }
 
         $statusCode = (int) curl_getinfo($handle, CURLINFO_RESPONSE_CODE);

@@ -39,7 +39,7 @@ class DirectPostWebhookRequest extends DirectPostAbstractRequest
 
         if ($fingerprint !== $this->generateResponseFingerprint($data)) {
             $existing = isset($data['restext']) ? trim((string) $data['restext']) : '';
-            $data['restext'] = $existing === '' ? 'Invalid fingerprint.' : $existing.', Invalid fingerprint.';
+            $data['restext'] = $existing === '' ? 'Invalid fingerprint.' : $existing . ', Invalid fingerprint.';
             $data['summarycode'] = 3;
         }
 

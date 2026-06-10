@@ -49,6 +49,16 @@ class UnionPayPurchaseRequestTest extends TestCase
         $this->assertArrayHasKey('EPS_FINGERPRINT', $response->getData());
     }
 
+    public function testAllowsSupportedCurrencyForUpop()
+    {
+        $this->request->setCurrency('AUD');
+
+        $data = $this->request->getData();
+
+        $this->assertSame('UPOP', $data['EPS_PAYMENTCHOICE']);
+        $this->assertSame('AUD', $data['EPS_CURRENCY']);
+    }
+
     public function testRejectsUnsupportedCurrencyForUpop()
     {
         $this->request->setCurrency('USD');

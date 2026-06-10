@@ -43,4 +43,3 @@ class DirectPostAdvancedFieldsRequestTest extends TestCase
         $this->assertSame('merchant,refid,rescode,restext', $data['EPS_CALLBACKPARAMS']);
     }
 }
-

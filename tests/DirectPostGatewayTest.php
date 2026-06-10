@@ -105,7 +105,7 @@ class DirectPostGatewayTest extends GatewayTestCase
 
     public function testSetTransportAndTimeout()
     {
-        $transport = new class() implements TransportInterface {
+        $transport = new class () implements TransportInterface {
             public function send($method, $url, array $headers = [], $body = '', $timeoutSeconds = 60)
             {
                 return new TransportResponse(200, '{}');
