@@ -111,19 +111,31 @@ abstract class DirectPostAbstractRequest extends AbstractRequest
             'EPS_TIMESTAMP',
         ];
 
-        if (isset($data['EPS_ORDERID'])) {
+        $hasCardScheme = isset($data['EPS_CARDSCHEME']);
+        $hasOrderId = isset($data['EPS_ORDERID']);
+        $hasSurcharge = isset($data['EPS_SURCHARGEAMOUNT']);
+
+        // Field order follows the NAB Direct Post v2 fingerprint specification
+        // (sections 2.3.6.2 - 2.3.6.4). EPS_SURCHARGEENABLED is a form-only flag
+        // and is never part of the fingerprint. The surcharge values are always
+        // ordered fee, rate, amount. When the MCR card scheme is present it takes
+        // the position immediately after the timestamp and the EMV order id moves
+        // to the end of the hashable string; otherwise the EMV order id precedes
+        // any surcharge values.
+        if ($hasCardScheme) {
+            $fields[] = 'EPS_CARDSCHEME';
+        } elseif ($hasOrderId) {
             $fields[] = 'EPS_ORDERID';
         }
 
-        if (isset($data['EPS_CARDSCHEME'])) {
-            $fields[] = 'EPS_CARDSCHEME';
+        if ($hasSurcharge) {
+            $fields[] = 'EPS_SURCHARGEFEE';
+            $fields[] = 'EPS_SURCHARGERATE';
+            $fields[] = 'EPS_SURCHARGEAMOUNT';
         }
 
-        if (isset($data['EPS_SURCHARGEENABLED'])) {
-            $fields[] = 'EPS_SURCHARGEENABLED';
-            $fields[] = 'EPS_SURCHARGEAMOUNT';
-            $fields[] = 'EPS_SURCHARGERATE';
-            $fields[] = 'EPS_SURCHARGEFEE';
+        if ($hasCardScheme && $hasOrderId) {
+            $fields[] = 'EPS_ORDERID';
         }
 
         $hashable = [];
