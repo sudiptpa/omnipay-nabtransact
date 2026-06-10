@@ -77,4 +77,9 @@ class DirectPostGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\NABTransact\Message\EMV3DSOrderRequest', $parameters);
     }
+
+    public function getEMV3DSOrder(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\NABTransact\Message\GetEMV3DSOrderRequest', $parameters);
+    }
 }
